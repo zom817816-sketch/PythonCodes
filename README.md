@@ -40,6 +40,7 @@
 - `04_ReverseString2.py` - 反转字符串（另一种实现）
 - `05_Strstr.py` - 字符串查找
 - `06_RepeatedSubstring.py` - 重复子字符串检测
+- `07_RepeatedStringMatch.py` - 重复字符串匹配 \*
 
 ### py_codes
 Python 数据结构与算法学习笔记
