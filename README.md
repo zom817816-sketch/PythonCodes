@@ -13,6 +13,9 @@
 - `02_RemoveElements.py` - 移除元素
 - `03_SquaresOfOrderedList.py` - 有序数组平方
 - `04_ShortestSubArray.py` - 最短子数组
+- `05_RemoveRepeatedElements.py` - 移除重复元素
+- `数组.md` - 数组知识点总结
+- `排序算法.md` - 排序算法总结
 
 #### HashTable
 哈希表相关算法实现
@@ -24,6 +27,7 @@
 - `06_Ransom.py` - 赎金信
 - `07_SumOfThree.py` - 三数之和
 - `08_SumOfFour.py` - 四数之和
+- `哈希表.md` - 哈希表知识点总结
 
 #### LinkedList
 链表相关算法实现
@@ -31,6 +35,7 @@
 - `02_linkedlist_design.py` - 链表设计
 - `03_linkedlist_reverse.py` - 链表反转
 - `04_exchange_pairs.py` - 交换节点对
+- `链表.md` - 链表知识点总结
 
 #### String
 字符串相关算法实现
@@ -41,6 +46,16 @@
 - `05_Strstr.py` - 字符串查找
 - `06_RepeatedSubstring.py` - 重复子字符串检测
 - `07_RepeatedStringMatch.py` - 重复字符串匹配 \*
+- `字符串.md` - 字符串知识点总结
+
+#### Stack
+栈相关算法实现
+- `01_QueueByStacks.py` - 用两个栈实现队列
+
+#### TwoPointer
+双指针相关算法实现
+- `01_ReplaceNumbers.py` - 替换数字
+- `双指针.md` - 双指针知识点总结
 
 ### py_codes
 Python 数据结构与算法学习笔记

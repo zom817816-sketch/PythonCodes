@@ -48,9 +48,22 @@ def reverse_string_4(chars):
         return chars
     return [chars[-1]] + reverse_string_4(chars[:-1])
 
+def reverse_string_5(chars): 
+    """
+    方法5:使用range
+    时间复杂度:O(n)
+    空间复杂度:O(1)
+    """
+    n = len(chars)
+    for i in range(n // 2): 
+        chars[i], chars[n-i-1] = chars[n-i-1], chars[i] 
+    return chars
+
+
 if __name__ == '__main__':
     chars = ['h', 'e', 'l', 'l', 'o']
     print(reverse_string_1(chars))
     print(reverse_string_2(chars))
     print(reverse_string_3(chars))
     print(reverse_string_4(chars))
+    print(reverse_string_5(chars))
