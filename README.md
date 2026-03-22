@@ -95,11 +95,6 @@ python Algorithms/Array/01_BinarySearch.py
 jupyter notebook py_codes/Chapter03/Chapter03.ipynb
 ```
 
-## 学习路径
-
-1. **基础数据结构**：从 [`py_codes/Chapter03`](./py_codes/Chapter03) 开始，学习列表、字典、栈、队列等基础数据结构
-2. **递归算法**：学习 [`py_codes/Chapter04`](./py_codes/Chapter04) 中的递归思想
-3. **算法实践**：在 [`Algorithms`](./Algorithms) 目录中按类别练习各种算法
 
 ## 许可证
 
