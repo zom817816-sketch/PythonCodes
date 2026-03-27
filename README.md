@@ -1,6 +1,6 @@
 # Python Codes
 
-这是我的 Python 代码学习项目仓库，包含一些算法实现和数据结构学习代码。
+这是我的 Python 代码学习项目仓库，包含算法实现和数据结构学习代码。
 
 ## 目录结构
 
@@ -43,18 +43,25 @@
 - [`02_ReverseSting2.py`](./Algorithms/String/02_ReverseSting2.py) - 反转字符串 II
 - [`03_ReplaceString.py`](./Algorithms/String/03_ReplaceString.py) - 替换字符串
 - [`04_ReverseString2.py`](./Algorithms/String/04_ReverseString2.py) - 反转字符串（另一种实现）
-- [`05_Strstr.py`](./Algorithms/String/05_Strstr.py) - 字符串查找
-- [`06_RepeatedSubstring.py`](./Algorithms/String/06_RepeatedSubstring.py) - 重复子字符串检测(重要)
+- [`05_Strstr.py`](./Algorithms/String/05_Strstr.py) - 字符串查找（KMP算法）
+- [`06_RepeatedSubstring.py`](./Algorithms/String/06_RepeatedSubstring.py) - 重复子字符串检测
 - [`07_RepeatedStringMatch.py`](./Algorithms/String/07_RepeatedStringMatch.py) - 重复字符串匹配
 - [`字符串.md`](./Algorithms/String/字符串.md) - 字符串知识点总结
 
 #### Stack
 栈相关算法实现
-- [`01_QueueByStacks.py`](./Algorithms/Stack/01_QueueByStacks.py) - 用两个栈实现队列
-- [`02_StackByQueues.py`](./Algorithms/Stack/02_StackByQueues.py) - 用两个队列实现栈
+- [`01_QueueByStacks.py`](./Algorithms/Stack/01_QueueByStacks.py) - 用栈实现队列
+- [`02_StackByQueues.py`](./Algorithms/Stack/02_StackByQueues.py) - 用队列实现栈
 - [`03_BracketsMatch.py`](./Algorithms/Stack/03_BracketsMatch.py) - 括号匹配
-- [`04_RemoveDuplicateStr.py`](./Algorithms/Stack/04_RemoveDuplicateStr.py) - 删除字符串中的所有相邻重复项
+- [`04_RemoveDuplicateStr.py`](./Algorithms/Stack/04_RemoveDuplicateStr.py) - 删除相邻重复项
 - [`05_EvalReversePolishNotation.py`](./Algorithms/Stack/05_EvalReversePolishNotation.py) - 逆波兰表达式求值
+- [`06_SlidingWindowMax.py`](./Algorithms/Stack/06_SlidingWindowMax.py) - 滑动窗口最大值（单调队列）
+- [`07_TopKFrequent.py`](./Algorithms/Stack/07_TopKFrequent.py) - 前K个高频元素（堆/桶排序）
+
+#### BinaryTree
+二叉树相关算法实现
+- [`01_BinaryTreeTraversal.py`](./Algorithms/BinaryTree/01_BinaryTreeTraversal.py) - 二叉树遍历（前序/中序/后序/层序）
+- [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
 
 #### TwoPointer
 双指针相关算法实现
@@ -83,11 +90,48 @@ Python 数据结构与算法学习笔记
 - [`maze_search.py`](./py_codes/Chapter04/maze_search.py) - 迷宫搜索
 - [`recmc.py`](./py_codes/Chapter04/recmc.py) - 递归找零
 
+## 算法知识点速查
+
+### 数组
+- 二分查找：有序数组的 O(log n) 查找
+- 双指针：快慢指针、对撞指针
+- 滑动窗口：子数组问题
+
+### 链表
+- 虚拟头节点：简化边界处理
+- 双指针：找中点、判环
+- 反转链表：迭代与递归
+
+### 哈希表
+- 空间换时间：O(1) 查询
+- 常见应用：去重、计数、快速查找
+
+### 字符串
+- KMP算法：O(n+m) 字符串匹配
+- 双指针：反转、替换
+
+### 栈与队列
+- 括号匹配：栈的经典应用
+- 单调栈/队列：Next Greater Element、滑动窗口最值
+- 堆：Top K 问题
+
+### 二叉树
+- 遍历：前序、中序、后序、层序
+- 递归三要素：终止条件、返回值、单层逻辑
+- BST性质：中序遍历有序
+
 ## 使用说明
 
 ### 运行算法文件
 ```bash
+# 运行数组算法
 python Algorithms/Array/01_BinarySearch.py
+
+# 运行栈算法
+python Algorithms/Stack/06_SlidingWindowMax.py
+
+# 运行二叉树算法
+python Algorithms/BinaryTree/01_BinaryTreeTraversal.py
 ```
 
 ### 运行学习笔记
@@ -95,6 +139,12 @@ python Algorithms/Array/01_BinarySearch.py
 jupyter notebook py_codes/Chapter03/Chapter03.ipynb
 ```
 
+## 学习建议
+
+1. **先看知识点总结**：每个目录下的 `.md` 文件整理了核心概念
+2. **理解后再动手**：代码文件包含详细注释，建议先读注释再运行
+3. **自己实现一遍**：看懂后尝试不看代码自己实现
+4. **对比多种解法**：很多题目提供了多种解法（暴力→优化→最优）
 
 ## 许可证
 
