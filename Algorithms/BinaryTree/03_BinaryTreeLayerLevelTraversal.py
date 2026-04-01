@@ -32,7 +32,6 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
 # 解法一：队列法（BFS，广度优先搜索）
 def levelOrder_queue(root: TreeNode) -> List[List[int]]:
     """
@@ -148,74 +147,425 @@ def levelOrder_recursive(root: TreeNode) -> List[List[int]]:
     return result
 
 
-def levelOrder_queue_reverse(root: TreeNode) -> list[list[int]]: 
-    """
-    给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
-    """
-    res = [] 
-    queue = deque([root]) 
 
-    while queue: 
-        layer_size = len(queue) 
-        current_level = [] 
-        for _ in range(layer_size): 
-            node = queue.popleft() 
-            current_level.append(node.val) 
-            if node.left: 
-                queue.append(node.left) 
-            if node.right: 
-                queue.append(node.right) 
-        res.append(current_level) 
+# 自底向上的层序遍历
+def levelOrder_bottom_up(root: TreeNode) -> List[List[int]]:
+    """
+    自底向上的层序遍历
     
-    left, right = 0, len(res)-1 
-    while left < right: 
-        res[left], res[right] = res[right], res[left] 
-        left += 1 
-        right -= 1 
+    思路：
+    - 先进行普通的层序遍历
+    - 最后将结果反转
     
-    return res 
+    时间复杂度：O(n)
+    空间复杂度：O(n)
+    """
+    result = levelOrder_queue(root)
+    result.reverse()
+    return result
 
 
-def levelOrder_queue_right(root: TreeNode) -> list[list[int]]: 
+# 锯齿形层序遍历
+def levelOrder_zigzag(root: TreeNode) -> List[List[int]]:
     """
-    给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
+    锯齿形层序遍历
+    
+    思路：
+    - 奇数层从左到右，偶数层从右到左
+    - 用双端队列，奇数层从尾部添加，偶数层从头部添加
+    
+    时间复杂度：O(n)
+    空间复杂度：O(n)
     """
-    if not root: 
+    if not root:
         return []
-    res = [] 
-    queue = deque([root]) 
-    while queue: 
-        layer_size = len(queue)
-        for _ in range(layer_size_size): 
-            last = queue.popleft()
-            if last.left: 
-                queue.append(last.left) 
-            if last.right: 
-                queue.append(last.right) 
-        res.append(last.val) 
-    return res
-
-def levelOrder_queue_avg(root: TreeNode) -> list[list[int]]: 
-    """ 
-    给定一个非空二叉树的根节点 root , 以数组的形式返回每一层节点的平均值。与实际答案相差 10-5 以内的答案可以被接受。
-    """ 
-    if not root: 
-        return [] 
     
-    res = [] 
-    from collections import deque 
-    queue = deque([root]) 
+    result = []
+    queue = deque([root])
+    is_left_to_right = True  # 第一层从左到右
+    
+    while queue:
+        level_size = len(queue)
+        current_level = deque()
+        
+        for _ in range(level_size):
+            node = queue.popleft()
+            
+            # 根据方向决定从哪边添加
+            if is_left_to_right:
+                current_level.append(node.val)
+            else:
+                current_level.appendleft(node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        result.append(list(current_level))
+        is_left_to_right = not is_left_to_right  # 切换方向
+    
+    return result
 
-    while queue: 
-        layer_size = len(queue) 
-        cur = []
-        for _ in range(layer_size): 
-            node = queue.popleft() 
-            cur.append(node.val) 
-            if node.left: 
-                queue.append(node.left) 
-            if node.right: 
-                queue.append(node.right) 
-        res.append(cur)
 
-    return [sum(level) / len(level) for level in res]    
+# 二叉树每层最大值
+def levelOrder_max_value(root: TreeNode) -> List[int]:
+    """
+    二叉树每层最大值
+    
+    思路：
+    - 层序遍历，记录每层的最大值
+    
+    时间复杂度：O(n)
+    空间复杂度：O(w)
+    """
+    if not root:
+        return []
+    
+    result = []
+    queue = deque([root])
+    
+    while queue:
+        level_size = len(queue)
+        level_max = float('-inf')
+        
+        for _ in range(level_size):
+            node = queue.popleft()
+            level_max = max(level_max, node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        result.append(level_max)
+    
+    return result
+
+# 填充每个节点的下一个右侧节点指针
+class TreeNodeNext:
+    """
+    带 next 指针的二叉树节点
+    
+    next 指针指向同层的下一个右侧节点，如果没有则为 None
+    """
+    def __init__(self, val: int = 0, 
+                 left: 'TreeNodeNext' = None, 
+                 right: 'TreeNodeNext' = None, 
+                 next: 'TreeNodeNext' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+
+
+def connect_next_pointer_bfs(root: TreeNodeNext) -> TreeNodeNext:
+    """
+    填充每个节点的 next 指针，指向其下一个右侧节点
+    
+    解法一：BFS 层序遍历（队列法）
+    
+    思路：
+    - 使用层序遍历，每次处理一层的节点
+    - 在同一层内，将前一个节点的 next 指向当前节点
+    - 每层的最后一个节点，next 指向 None
+    
+    时间复杂度：O(n) - 每个节点访问一次
+    空间复杂度：O(w) - w 为树的最大宽度，队列存储
+    
+    示例：
+        完美二叉树：
+              1
+             / \
+            2   3
+           / \ / \
+          4  5 6  7
+        
+        连接后：
+        第1层：1 → None
+        第2层：2 → 3 → None
+        第3层：4 → 5 → 6 → 7 → None
+    """
+    if not root:
+        return None
+    
+    queue = deque([root])
+    
+    while queue:
+        level_size = len(queue)
+        prev = None
+        
+        for _ in range(level_size):
+            cur = queue.popleft()
+            
+            # 连接前一个节点到当前节点
+            if prev:
+                prev.next = cur
+            prev = cur
+            
+            # 将子节点加入队列（完美二叉树一定有两个子节点或没有）
+            if cur.left:
+                queue.append(cur.left)
+            if cur.right:
+                queue.append(cur.right)
+        
+        # 每层的最后一个节点，next 指向 None
+        prev.next = None
+    
+    return root
+
+
+def connect_next_pointer_dfs(root: TreeNodeNext) -> TreeNodeNext:
+    """
+    填充每个节点的 next 指针，指向其下一个右侧节点
+    
+    解法二：DFS 递归（利用已建立的 next 指针）
+    
+    思路：
+    - 对于完美二叉树，每个父节点都有两个子节点
+    - 对于节点 node：
+      - node.left.next = node.right（左子节点的 next 就是右子节点）
+      - node.right.next = node.next.left（右子节点的 next 是父节点 next 的左子节点）
+    
+    时间复杂度：O(n) - 每个节点访问一次
+    空间复杂度：O(h) - h 为树的高度，递归栈深度
+    
+    优点：不需要额外空间（不需要队列）
+    """
+    if not root:
+        return None
+    
+    def connect(node: TreeNodeNext):
+        """递归连接以 node 为根的子树"""
+        if not node or not node.left:
+            # 叶子节点或空节点，无需处理
+            return
+        
+        # 1. 连接当前节点的左右子节点
+        node.left.next = node.right
+        
+        # 2. 连接右子节点到下一个节点的左子节点
+        if node.next:
+            node.right.next = node.next.left
+        else:
+            node.right.next = None
+        
+        # 3. 递归处理左右子树
+        connect(node.left)
+        connect(node.right)
+    
+    connect(root)
+    return root
+
+
+def connect_next_pointer_iterative(root: TreeNodeNext) -> TreeNodeNext:
+    """
+    填充每个节点的 next 指针，指向其下一个右侧节点
+    
+    解法三：迭代法（利用已建立的 next 指针，O(1) 空间）
+    
+    思路：
+    - 从根节点开始，处理每一层的 next 指针
+    - 利用上一层已经建立好的 next 指针，来遍历当前层
+    - 不需要队列，空间复杂度 O(1)
+    
+    时间复杂度：O(n)
+    空间复杂度：O(1) - 只使用常数额外空间
+    """
+    if not root:
+        return None
+    
+    # 从根节点开始，逐层处理
+    leftmost = root  # 每一层最左边的节点
+    
+    while leftmost.left:
+        # 遍历当前层，连接下一层的节点
+        head = leftmost  # 当前层的遍历指针
+        
+        while head:
+            # 连接当前节点的左右子节点
+            head.left.next = head.right
+            
+            # 连接右子节点到下一个节点的左子节点
+            if head.next:
+                head.right.next = head.next.left
+            
+            # 移动到当前层的下一个节点
+            head = head.next
+        
+        # 移动到下一层的最左节点
+        leftmost = leftmost.left
+    
+    return root
+
+
+def serialize_with_next(root: TreeNodeNext) -> list:
+    """
+    序列化带 next 指针的二叉树
+    
+    按层序遍历，用 '#' 表示每层的结束
+    示例：[1,#,2,3,#,4,5,6,7,#]
+    """
+    if not root:
+        return []
+    
+    result = []
+    queue = deque([root])
+    
+    while queue:
+        level_size = len(queue)
+        
+        for _ in range(level_size):
+            node = queue.popleft()
+            result.append(node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        result.append('#')  # 每层结束标记
+    
+    return result
+
+
+# ============================================
+# 测试代码
+# ============================================
+if __name__ == "__main__":
+    """
+    构建测试二叉树：
+            3
+           / \
+          9  20
+            /  \
+           15   7
+    
+    预期层序遍历结果：[[3], [9, 20], [15, 7]]
+    """
+    
+    # 构建二叉树
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+    
+    print("="*60)
+    print("二叉树层序遍历")
+    print("="*60)
+    print("\n测试二叉树结构：")
+    print("        3")
+    print("       / \\")
+    print("      9   20")
+    print("         /  \\")
+    print("        15   7")
+    print("\n预期结果: [[3], [9, 20], [15, 7]]")
+    
+    # 测试队列法
+    print("\n" + "="*60)
+    print("解法一：队列法（BFS）")
+    print("="*60)
+    result_queue = levelOrder_queue(root)
+    print(f"结果: {result_queue}")
+    
+    # 打印队列法详细过程
+    print_queue_process(root)
+    
+    # 测试递归法
+    print("\n" + "="*60)
+    print("解法二：递归法（DFS）")
+    print("="*60)
+    result_recursive = levelOrder_recursive(root)
+    print(f"结果: {result_recursive}")
+    
+    # 打印递归法详细过程
+    result_verbose = levelOrder_recursive_verbose(root)
+    print(f"\n递归法最终结果: {result_verbose}")
+    
+    # 验证两种方法结果一致
+    print("\n" + "="*60)
+    print("验证")
+    print("="*60)
+    print(f"队列法结果: {result_queue}")
+    print(f"递归法结果: {result_recursive}")
+    print(f"结果一致: {result_queue == result_recursive}")
+    
+    # 测试自底向上
+    print("\n" + "="*60)
+    print("自底向上的层序遍历")
+    print("="*60)
+    result_bottom = levelOrder_bottom_up(root)
+    print(f"结果: {result_bottom}")
+    
+    # 测试锯齿形
+    print("\n" + "="*60)
+    print("锯齿形层序遍历")
+    print("="*60)
+    result_zigzag = levelOrder_zigzag(root)
+    print(f"结果: {result_zigzag}")
+    
+    # 测试每层最大值
+    print("\n" + "="*60)
+    print("每层最大值")
+    print("="*60)
+    result_max = levelOrder_max_value(root)
+    print(f"结果: {result_max}")
+    
+    # 测试 next 指针
+    print("\n" + "="*60)
+    print("填充 next 指针")
+    print("="*60)
+    
+    # 构建完美二叉树
+    #       1
+    #      / \
+    #     2   3
+    #    / \ / \
+    #   4  5 6  7
+    root_next = TreeNodeNext(1)
+    root_next.left = TreeNodeNext(2)
+    root_next.right = TreeNodeNext(3)
+    root_next.left.left = TreeNodeNext(4)
+    root_next.left.right = TreeNodeNext(5)
+    root_next.right.left = TreeNodeNext(6)
+    root_next.right.right = TreeNodeNext(7)
+    
+    print("\n完美二叉树结构：")
+    print("        1")
+    print("       / \\")
+    print("      2   3")
+    print("     / \ / \\")
+    print("    4  5 6  7")
+    
+    # 测试 BFS 解法
+    connect_next_pointer_bfs(root_next)
+    result_bfs = serialize_with_next(root_next)
+    print(f"\nBFS 解法序列化结果: {result_bfs}")
+    print(f"预期结果: [1, '#', 2, 3, '#', 4, 5, 6, 7, '#']")
+    
+    # 测试 DFS 解法
+    root_next2 = TreeNodeNext(1)
+    root_next2.left = TreeNodeNext(2)
+    root_next2.right = TreeNodeNext(3)
+    root_next2.left.left = TreeNodeNext(4)
+    root_next2.left.right = TreeNodeNext(5)
+    root_next2.right.left = TreeNodeNext(6)
+    root_next2.right.right = TreeNodeNext(7)
+    
+    connect_next_pointer_dfs(root_next2)
+    result_dfs = serialize_with_next(root_next2)
+    print(f"\nDFS 解法序列化结果: {result_dfs}")
+    
+    # 测试迭代解法
+    root_next3 = TreeNodeNext(1)
+    root_next3.left = TreeNodeNext(2)
+    root_next3.right = TreeNodeNext(3)
+    root_next3.left.left = TreeNodeNext(4)
+    root_next3.left.right = TreeNodeNext(5)
+    root_next3.right.left = TreeNodeNext(6)
+    root_next3.right.right = TreeNodeNext(7)
+    
+    connect_next_pointer_iterative(root_next3)
+    result_iter = serialize_with_next(root_next3)
+    print(f"迭代解法序列化结果: {result_iter}")
