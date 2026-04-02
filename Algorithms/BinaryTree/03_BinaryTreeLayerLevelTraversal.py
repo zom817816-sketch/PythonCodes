@@ -308,9 +308,6 @@ def connect_next_pointer_bfs(root: TreeNodeNext) -> TreeNodeNext:
                 queue.append(cur.left)
             if cur.right:
                 queue.append(cur.right)
-        
-        # 每层的最后一个节点，next 指向 None
-        prev.next = None
     
     return root
 
@@ -398,174 +395,251 @@ def connect_next_pointer_iterative(root: TreeNodeNext) -> TreeNodeNext:
     
     return root
 
+def connect_next_pointer_dfs_ii(root: TreeNodeNext) -> TreeNodeNext: 
+    """
+    给定一个二叉树：
+    struct Node {
+    int val;
+    Node *left;
+    Node *right;
+    Node *next;
+    }
+    填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL 。
+    初始状态下，所有 next 指针都被设置为 NULL 。
+    递归法
+    """ 
+    if not root: 
+        return None
 
-def serialize_with_next(root: TreeNodeNext) -> list:
+    def connect_(node): 
+        # 节点为空或者为叶节点则不需要处理
+        if not node or (not node.left and not node.right): 
+            return 
+        # 找到当前子树最右侧的节点（需要连接的目标）
+        if node.right: 
+            last = node.right
+        elif node.left: 
+            last = node.left
+        else: 
+            last = None
+        # 连接左右节点
+        if node.left and node.right: 
+            node.left.next = node.right
+        # 将last连接到右侧子树的第一个节点
+        if last: 
+            cur = node.next 
+            while cur: 
+                if cur.left: 
+                    last.next = cur.left
+                    break
+                elif cur.right:
+                    last.next = cur.right
+                    break
+                cur = cur.next
+        #head = head.next 遍历当前层时， 依赖的是已经建立好的 next 指针 ，所以必须先建立右侧的 next 指针
+        connect_(node.right)
+        connect_(node.left)
+    connect_(root)
+    return root
+
+def connect_next_pointer_iter_ii(root: TreeNodeNext) -> TreeNodeNext: 
     """
-    序列化带 next 指针的二叉树
-    
-    按层序遍历，用 '#' 表示每层的结束
-    示例：[1,#,2,3,#,4,5,6,7,#]
-    """
-    if not root:
-        return []
-    
-    result = []
+    给定一个二叉树：
+    struct Node {
+    int val;
+    Node *left;
+    Node *right;
+    Node *next;
+    }
+    填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL 。
+    初始状态下，所有 next 指针都被设置为 NULL 。
+    迭代法
+    """ 
+    if not root: 
+        return None 
     queue = deque([root])
-    
-    while queue:
-        level_size = len(queue)
-        
-        for _ in range(level_size):
-            node = queue.popleft()
-            result.append(node.val)
-            
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        
-        result.append('#')  # 每层结束标记
-    
-    return result
+    while queue: 
+        level_size = len(queue) 
+        prev = None
+        for _ in range(level_size): 
+            cur = queue.popleft() 
+            if prev:
+                prev.next = cur
+            prev = cur 
+            # 将当前节点的左右子节点添加到队列末尾
+            if cur.left: 
+                queue.append(cur.left)
+            if cur.right: 
+                queue.append(cur.right)
+    return root
 
-
-# ============================================
-# 测试代码
-# ============================================
-if __name__ == "__main__":
+def maxdepth(root: TreeNode) -> int:
     """
-    构建测试二叉树：
+    二叉树的最大深度
+    
+    题目：给定一个二叉树 root，返回其最大深度。
+    二叉树的最大深度是指从根节点到最远叶子节点的最长路径上的节点数。
+    
+    示例：
+        二叉树：
             3
            / \
           9  20
             /  \
            15   7
+        
+        最大深度为 3（路径：3 → 20 → 15 或 3 → 20 → 7）
     
-    预期层序遍历结果：[[3], [9, 20], [15, 7]]
+    解法：递归（DFS）
+    
+    思路：
+    - 空节点的深度为 0
+    - 当前节点的深度 = max(左子树深度, 右子树深度) + 1
+    - 递归计算左右子树的深度，取较大值加 1
+    
+    时间复杂度：O(n) - 每个节点访问一次
+    空间复杂度：O(h) - h 为树的高度，递归栈的深度
+    
+    递归过程示例：
+        对于树：
+            3
+           / \
+          9  20
+            /  \
+           15   7
+        
+        maxdepth(3)
+        = max(maxdepth(9), maxdepth(20)) + 1
+        = max(1, max(maxdepth(15), maxdepth(7)) + 1) + 1
+        = max(1, max(1, 1) + 1) + 1
+        = max(1, 2) + 1
+        = 3
     """
+    # 基准情况：空节点的深度为 0
+    if not root:
+        return 0
     
-    # 构建二叉树
-    root = TreeNode(3)
-    root.left = TreeNode(9)
-    root.right = TreeNode(20)
-    root.right.left = TreeNode(15)
-    root.right.right = TreeNode(7)
+    # 递归计算左子树的深度
+    left_depth = maxdepth(root.left)
     
-    print("="*60)
-    print("二叉树层序遍历")
-    print("="*60)
-    print("\n测试二叉树结构：")
-    print("        3")
-    print("       / \\")
-    print("      9   20")
-    print("         /  \\")
-    print("        15   7")
-    print("\n预期结果: [[3], [9, 20], [15, 7]]")
+    # 递归计算右子树的深度
+    right_depth = maxdepth(root.right)
     
-    # 测试队列法
-    print("\n" + "="*60)
-    print("解法一：队列法（BFS）")
-    print("="*60)
-    result_queue = levelOrder_queue(root)
-    print(f"结果: {result_queue}")
+    # 当前节点的深度 = 左右子树深度的最大值 + 1（当前节点本身）
+    return max(left_depth, right_depth) + 1
+
+
+def maxdepth_iterative(root: TreeNode) -> int:
+    """
+    二叉树的最大深度 - 迭代解法（BFS层序遍历）
     
-    # 打印队列法详细过程
-    print_queue_process(root)
+    思路：
+    - 使用层序遍历，每遍历一层，深度加 1
+    - 遍历完所有层后，得到的层数就是最大深度
     
-    # 测试递归法
-    print("\n" + "="*60)
-    print("解法二：递归法（DFS）")
-    print("="*60)
-    result_recursive = levelOrder_recursive(root)
-    print(f"结果: {result_recursive}")
+    时间复杂度：O(n)
+    空间复杂度：O(w) - w 为树的最大宽度
+    """
+    if not root:
+        return 0
     
-    # 打印递归法详细过程
-    result_verbose = levelOrder_recursive_verbose(root)
-    print(f"\n递归法最终结果: {result_verbose}")
+    from collections import deque
+    queue = deque([root])
+    depth = 0
     
-    # 验证两种方法结果一致
-    print("\n" + "="*60)
-    print("验证")
-    print("="*60)
-    print(f"队列法结果: {result_queue}")
-    print(f"递归法结果: {result_recursive}")
-    print(f"结果一致: {result_queue == result_recursive}")
+    while queue:
+        # 当前层的节点数
+        level_size = len(queue)
+        
+        # 处理当前层的所有节点
+        for _ in range(level_size):
+            node = queue.popleft()
+            
+            # 将子节点加入队列
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        # 当前层处理完毕，深度加 1
+        depth += 1
     
-    # 测试自底向上
-    print("\n" + "="*60)
-    print("自底向上的层序遍历")
-    print("="*60)
-    result_bottom = levelOrder_bottom_up(root)
-    print(f"结果: {result_bottom}")
+    return depth
+
+def minDepth_iter(root: Optional[TreeNode]) -> int:
+    """
+    给定一个二叉树，找出其最小深度。
+    最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+    说明：叶子节点是指没有子节点的节点。
     
-    # 测试锯齿形
-    print("\n" + "="*60)
-    print("锯齿形层序遍历")
-    print("="*60)
-    result_zigzag = levelOrder_zigzag(root)
-    print(f"结果: {result_zigzag}")
+    使用 BFS（广度优先搜索）层序遍历实现
+    时间复杂度：O(N)，每个节点最多被访问一次
+    空间复杂度：O(W)，W 为树的最大宽度，即队列的最大长度
+    """
+    # 如果根节点为空，深度为 0
+    if not root: 
+        return 0 
     
-    # 测试每层最大值
-    print("\n" + "="*60)
-    print("每层最大值")
-    print("="*60)
-    result_max = levelOrder_max_value(root)
-    print(f"结果: {result_max}")
+    from collections import deque
+    # 初始化队列，将根节点加入队列
+    queue = deque([root])
+    # 初始化当前深度为 0
+    depth = 0
     
-    # 测试 next 指针
-    print("\n" + "="*60)
-    print("填充 next 指针")
-    print("="*60)
+    # 开始 BFS 层序遍历
+    while queue: 
+        # 获取当前层的节点数量
+        size = len(queue)
+        
+        # 遍历当前层的所有节点
+        for _ in range(size): 
+            # 取出队首节点
+            node = queue.popleft()
+            
+            # 如果当前节点是叶子节点（没有左右子节点），返回当前深度 + 1
+            # 由于是 BFS，第一次遇到的叶子节点一定是最小深度
+            if not node.left and not node.right: 
+                return depth + 1
+            
+            # 将左子节点加入队列，准备下一层遍历
+            if node.left: 
+                queue.append(node.left)
+            
+            # 将右子节点加入队列，准备下一层遍历
+            if node.right: 
+                queue.append(node.right)
+        
+        # 当前层所有节点处理完毕，深度加 1
+        depth += 1
     
-    # 构建完美二叉树
-    #       1
-    #      / \
-    #     2   3
-    #    / \ / \
-    #   4  5 6  7
-    root_next = TreeNodeNext(1)
-    root_next.left = TreeNodeNext(2)
-    root_next.right = TreeNodeNext(3)
-    root_next.left.left = TreeNodeNext(4)
-    root_next.left.right = TreeNodeNext(5)
-    root_next.right.left = TreeNodeNext(6)
-    root_next.right.right = TreeNodeNext(7)
+    return depth
+
+
+def minDepth_Recursive(root: Optional[TreeNode]) -> int:
+    """
+    给定一个二叉树，找出其最小深度（递归版本）。
+    最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+    说明：叶子节点是指没有子节点的节点。
     
-    print("\n完美二叉树结构：")
-    print("        1")
-    print("       / \\")
-    print("      2   3")
-    print("     / \ / \\")
-    print("    4  5 6  7")
+    使用 DFS（深度优先搜索）递归实现
+    时间复杂度：O(N)，每个节点最多被访问一次
+    空间复杂度：O(H)，H 为树的高度，即递归栈的深度
+    """
+    # 如果根节点为空，深度为 0
+    if not root:
+        return 0
     
-    # 测试 BFS 解法
-    connect_next_pointer_bfs(root_next)
-    result_bfs = serialize_with_next(root_next)
-    print(f"\nBFS 解法序列化结果: {result_bfs}")
-    print(f"预期结果: [1, '#', 2, 3, '#', 4, 5, 6, 7, '#']")
+    # 如果当前节点是叶子节点，返回深度 1
+    if not root.left and not root.right:
+        return 1
     
-    # 测试 DFS 解法
-    root_next2 = TreeNodeNext(1)
-    root_next2.left = TreeNodeNext(2)
-    root_next2.right = TreeNodeNext(3)
-    root_next2.left.left = TreeNodeNext(4)
-    root_next2.left.right = TreeNodeNext(5)
-    root_next2.right.left = TreeNodeNext(6)
-    root_next2.right.right = TreeNodeNext(7)
+    # 如果只有左子树，返回左子树的最小深度 + 1
+    if not root.right:
+        return minDepthRecursive(root.left) + 1
     
-    connect_next_pointer_dfs(root_next2)
-    result_dfs = serialize_with_next(root_next2)
-    print(f"\nDFS 解法序列化结果: {result_dfs}")
+    # 如果只有右子树，返回右子树的最小深度 + 1
+    if not root.left:
+        return minDepthRecursive(root.right) + 1
     
-    # 测试迭代解法
-    root_next3 = TreeNodeNext(1)
-    root_next3.left = TreeNodeNext(2)
-    root_next3.right = TreeNodeNext(3)
-    root_next3.left.left = TreeNodeNext(4)
-    root_next3.left.right = TreeNodeNext(5)
-    root_next3.right.left = TreeNodeNext(6)
-    root_next3.right.right = TreeNodeNext(7)
-    
-    connect_next_pointer_iterative(root_next3)
-    result_iter = serialize_with_next(root_next3)
-    print(f"迭代解法序列化结果: {result_iter}")
+    # 如果左右子树都存在，返回两者中的最小值 + 1
+    return min(minDepthRecursive(root.left), minDepthRecursive(root.right)) + 1

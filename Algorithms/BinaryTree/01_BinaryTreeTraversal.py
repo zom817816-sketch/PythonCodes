@@ -18,9 +18,7 @@
 from typing import List, Optional
 
 
-# ============================================
 # 定义二叉树节点
-# ============================================
 class TreeNode:
     """
     二叉树节点类
@@ -38,9 +36,7 @@ class TreeNode:
         self.right = right  # 指向右子节点
 
 
-# ============================================
 # 前序遍历（根-左-右）
-# ============================================
 def preorderTraversal(root: TreeNode) -> List[int]:
     """
     前序遍历：根节点 → 左子树 → 右子树
@@ -88,9 +84,7 @@ def preorderTraversal(root: TreeNode) -> List[int]:
     return res
 
 
-# ============================================
 # 中序遍历（左-根-右）
-# ============================================
 def inorderTraversal(root: TreeNode) -> List[int]:
     """
     中序遍历：左子树 → 根节点 → 右子树
@@ -137,9 +131,7 @@ def inorderTraversal(root: TreeNode) -> List[int]:
     return res
 
 
-# ============================================
 # 后序遍历（左-右-根）
-# ============================================
 def postorderTraversal(root: TreeNode) -> List[int]:
     """
     后序遍历：左子树 → 右子树 → 根节点
@@ -186,9 +178,7 @@ def postorderTraversal(root: TreeNode) -> List[int]:
     return res
 
 
-# ============================================
 # 迭代实现（使用栈）
-# ============================================
 def preorderTraversal_iterative(root: TreeNode) -> List[int]:
     """
     前序遍历 - 迭代实现（使用栈）
@@ -284,63 +274,7 @@ def postorderTraversal_iterative(root: TreeNode) -> List[int]:
     return res[::-1]
 
 
-# ============================================
-# 层序遍历（广度优先）
-# ============================================
-def levelOrderTraversal(root: TreeNode) -> List[List[int]]:
-    """
-    层序遍历（广度优先搜索 BFS）
-    
-    遍历顺序：从上到下，从左到右，一层一层访问
-    
-    示意图：
-            1          <- 第1层
-           / \
-          2   3        <- 第2层
-         / \
-        4   5          <- 第3层
-    
-    层序遍历结果：[[1], [2, 3], [4, 5]]
-    
-    应用场景：
-    - 按层打印二叉树
-    - 求树的最大深度/最小深度
-    - 判断完全二叉树
-    
-    时间复杂度：O(n)
-    空间复杂度：O(w)，w 为树的最大宽度
-    """
-    if not root:
-        return []
-    
-    from collections import deque
-    
-    res = []
-    queue = deque([root])  # 队列，先进先出
-    
-    while queue:
-        level_size = len(queue)  # 当前层的节点数
-        level_nodes = []  # 存储当前层的节点值
-        
-        # 遍历当前层的所有节点
-        for _ in range(level_size):
-            node = queue.popleft()
-            level_nodes.append(node.val)
-            
-            # 将子节点加入队列（下一层）
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        
-        res.append(level_nodes)
-    
-    return res
-
-
-# ============================================
 # 测试代码
-# ============================================
 if __name__ == "__main__":
     """
     构建测试二叉树：
@@ -367,6 +301,4 @@ if __name__ == "__main__":
     print(f"前序遍历：{preorderTraversal_iterative(root)}")   # [1, 2, 4, 5, 3]
     print(f"中序遍历：{inorderTraversal_iterative(root)}")    # [4, 2, 5, 1, 3]
     print(f"后序遍历：{postorderTraversal_iterative(root)}")  # [4, 5, 2, 3, 1]
-    
-    print("=" * 50)
-    print(f"层序遍历：{levelOrderTraversal(root)}")    # [[1], [2, 3], [4, 5]]
+
