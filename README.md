@@ -61,6 +61,8 @@
 #### BinaryTree
 二叉树相关算法实现
 - [`01_BinaryTreeTraversal.py`](./Algorithms/BinaryTree/01_BinaryTreeTraversal.py) - 二叉树遍历（前序/中序/后序/层序）
+- [`02_BinaryTreeUnifiedIterative.py`](./Algorithms/BinaryTree/02_BinaryTreeUnifiedIterative.py) - 二叉树遍历统一迭代实现（标记法）
+- [`03_BinaryTreeLayerLevelTraversal.py`](./Algorithms/BinaryTree/03_BinaryTreeLayerLevelTraversal.py) - 二叉树层序遍历及相关算法
 - [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
 
 #### TwoPointer
@@ -116,9 +118,12 @@ Python 数据结构与算法学习笔记
 - 堆：Top K 问题
 
 ### 二叉树
-- 遍历：前序、中序、后序、层序
+- 遍历：前序、中序、后序、层序（统一迭代标记法）
 - 递归三要素：终止条件、返回值、单层逻辑
 - BST性质：中序遍历有序
+- 层序遍历：BFS队列法、DFS递归法
+- 深度计算：最大深度、最小深度
+- 进阶应用：锯齿形遍历、每层最大值、连接右侧节点
 
 ## 使用说明
 
@@ -132,6 +137,8 @@ python Algorithms/Stack/06_SlidingWindowMax.py
 
 # 运行二叉树算法
 python Algorithms/BinaryTree/01_BinaryTreeTraversal.py
+python Algorithms/BinaryTree/02_BinaryTreeUnifiedIterative.py
+python Algorithms/BinaryTree/03_BinaryTreeLayerLevelTraversal.py
 ```
 
 ### 运行学习笔记
