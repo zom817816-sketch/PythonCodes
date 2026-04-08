@@ -63,6 +63,12 @@
 - [`01_BinaryTreeTraversal.py`](./Algorithms/BinaryTree/01_BinaryTreeTraversal.py) - 二叉树遍历（前序/中序/后序/层序）
 - [`02_BinaryTreeUnifiedIterative.py`](./Algorithms/BinaryTree/02_BinaryTreeUnifiedIterative.py) - 二叉树遍历统一迭代实现（标记法）
 - [`03_BinaryTreeLayerLevelTraversal.py`](./Algorithms/BinaryTree/03_BinaryTreeLayerLevelTraversal.py) - 二叉树层序遍历及相关算法
+- [`04_InvertBinaryTree.py`](./Algorithms/BinaryTree/04_InvertBinaryTree.py) - 翻转二叉树
+- [`05_SymmetricBinaryTree.py`](./Algorithms/BinaryTree/05_SymmetricBinaryTree.py) - 对称二叉树检测
+- [`06_MaxDepthBinaryTree.py`](./Algorithms/BinaryTree/06_MaxDepthBinaryTree.py) - 二叉树最大深度（含N叉树）
+- [`07_MinDepthBinaryTree.py`](./Algorithms/BinaryTree/07_MinDepthBinaryTree.py) - 二叉树最小深度
+- [`08_CountCompleteTreeNodes.py`](./Algorithms/BinaryTree/08_CountCompleteTreeNodes.py) - 完全二叉树节点计数
+- [`09_BalancedBinaryTree.py`](./Algorithms/BinaryTree/09_BalancedBinaryTree.py) - 平衡二叉树检测
 - [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
 
 #### TwoPointer
@@ -123,6 +129,11 @@ Python 数据结构与算法学习笔记
 - BST性质：中序遍历有序
 - 层序遍历：BFS队列法、DFS递归法
 - 深度计算：最大深度、最小深度
+- 翻转操作：递归与迭代实现
+- 对称检测：递归比较与迭代队列
+- 平衡判断：自顶向下O(n²)与自底向上O(n)
+- 完全二叉树：节点计数优化O(log²n)
+- N叉树：深度计算与遍历扩展
 - 进阶应用：锯齿形遍历、每层最大值、连接右侧节点
 
 ## 使用说明
