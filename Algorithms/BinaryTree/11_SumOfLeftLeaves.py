@@ -25,8 +25,11 @@
 # 3. 递归返回值：将左子树和右子树的左叶子之和相加，得到当前节点的左叶子之和。
 
 
+from typing import Optional
+
+
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(self, val: int = 0, left: Optional['TreeNode'] = None, right: Optional['TreeNode'] = None):
         self.val = val
         self.left = left
         self.right = right
