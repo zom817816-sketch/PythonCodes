@@ -105,23 +105,6 @@ def findLeftBottomValRecursive(root: Optional[TreeNode]) -> int:
     if not root:
         return 0
     
-    # 使用 nonlocal 声明，允许在嵌套函数中修改外部变量
-    nonlocal_variables = {
-        'result': root.val,  # 初始化为根节点值
-        'max_depth': 1       # 初始深度为1（根节点）
-    }
-    
-    def dfs(node: Optional[TreeNode], depth: int) -> None:
-        """
-        深度优先遍历辅助函数
-        
-        Args:
-            node: 当前遍历的节点
-            depth: 当前节点的深度（根节点深度为1）
-        """
-    if not root:
-        return 0
-    
     # 使用列表存储状态变量，便于在嵌套函数中修改
     result = [root.val]  # result[0] 存储结果
     max_depth = [1]       # max_depth[0] 存储最大深度
@@ -149,7 +132,7 @@ def findLeftBottomValRecursive(root: Optional[TreeNode]) -> int:
 
 
 if __name__ == "__main__":
-    # 测试用例1
+    # 测试用例
     #       2
     #      / \
     #     1   3
