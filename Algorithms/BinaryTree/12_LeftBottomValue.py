@@ -142,4 +142,3 @@ if __name__ == "__main__":
     
     print(f"  BFS方法结果: {findLeftBottomVal(root1)}")
     print(f"  递归方法结果: {findLeftBottomValRecursive(root1)}")
-
