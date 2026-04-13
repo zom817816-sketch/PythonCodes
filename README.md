@@ -69,6 +69,11 @@
 - [`07_MinDepthBinaryTree.py`](./Algorithms/BinaryTree/07_MinDepthBinaryTree.py) - 二叉树最小深度
 - [`08_CountCompleteTreeNodes.py`](./Algorithms/BinaryTree/08_CountCompleteTreeNodes.py) - 完全二叉树节点计数
 - [`09_BalancedBinaryTree.py`](./Algorithms/BinaryTree/09_BalancedBinaryTree.py) - 平衡二叉树检测
+- [`10_BinaryTreePaths.py`](./Algorithms/BinaryTree/10_BinaryTreePaths.py) - 二叉树所有路径
+- [`11_SumOfLeftLeaves.py`](./Algorithms/BinaryTree/11_SumOfLeftLeaves.py) - 左叶子之和
+- [`12_LeftBottomValue.py`](./Algorithms/BinaryTree/12_LeftBottomValue.py) - 左下角的值
+- [`13_BinaryTreePathSum.py`](./Algorithms/BinaryTree/13_BinaryTreePathSum.py) - 路径总和
+- [`14_BuildBinaryTree.py`](./Algorithms/BinaryTree/14_BuildBinaryTree.py) - 根据中序和后序遍历构造二叉树
 - [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
 
 #### TwoPointer
@@ -134,6 +139,8 @@ Python 数据结构与算法学习笔记
 - 平衡判断：自顶向下O(n²)与自底向上O(n)
 - 完全二叉树：节点计数优化O(log²n)
 - N叉树：深度计算与遍历扩展
+- 路径问题：所有路径、路径总和、左叶子之和、左下角值
+- 树构造：根据中序和后序遍历构造二叉树
 - 进阶应用：锯齿形遍历、每层最大值、连接右侧节点
 
 ## 使用说明
@@ -147,9 +154,7 @@ python Algorithms/Array/01_BinarySearch.py
 python Algorithms/Stack/06_SlidingWindowMax.py
 
 # 运行二叉树算法
-python Algorithms/BinaryTree/01_BinaryTreeTraversal.py
-python Algorithms/BinaryTree/02_BinaryTreeUnifiedIterative.py
-python Algorithms/BinaryTree/03_BinaryTreeLayerLevelTraversal.py
+python Algorithms/BinaryTree/14_BuildBinaryTree.py
 ```
 
 ### 运行学习笔记
