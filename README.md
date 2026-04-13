@@ -171,4 +171,4 @@ jupyter notebook py_codes/Chapter03/Chapter03.ipynb
 
 ## 许可证
 
-本项目仅供学习使用。
+MIT
