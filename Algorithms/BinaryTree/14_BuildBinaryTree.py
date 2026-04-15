@@ -70,7 +70,7 @@ def buildTree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
 
 def buildTree_optimized(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
     """
-    方法二：递归解法（优化版，使用哈希表）
+    方法二：递归解法（优化版，使用哈希表）⭐⭐⭐
     时间复杂度：O(n)，使用哈希表将查找优化为 O(1)
     空间复杂度：O(n)，哈希表存储所有元素 + 递归栈
     
