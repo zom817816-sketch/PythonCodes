@@ -48,7 +48,7 @@ class TreeNode:
 
 def isValidBST(root: Optional[TreeNode]) -> bool:
     """
-    递归方法：使用上下界约束验证BST
+    递归方法：使用上下界约束验证BST⭐⭐⭐
     
     核心思想：
     - 为每个节点定义一个有效范围 (min_val, max_val)
@@ -107,7 +107,7 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
 
 def isValidBST_iter(root: Optional[TreeNode]) -> bool:
     """
-    迭代方法：使用栈进行中序遍历
+    迭代方法：使用栈进行中序遍历⭐⭐⭐
     
     核心思想：
     - BST的中序遍历结果是严格递增的

@@ -72,7 +72,7 @@ def searchBST(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
 
 def searchBST_iter(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
     """
-    迭代方法：在BST中查找值为val的节点
+    迭代方法：在BST中查找值为val的节点⭐⭐⭐
     
     核心思想：
     - 使用while循环代替递归
