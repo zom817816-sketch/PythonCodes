@@ -74,7 +74,14 @@
 - [`12_LeftBottomValue.py`](./Algorithms/BinaryTree/12_LeftBottomValue.py) - 左下角的值
 - [`13_BinaryTreePathSum.py`](./Algorithms/BinaryTree/13_BinaryTreePathSum.py) - 路径总和
 - [`14_BuildBinaryTree.py`](./Algorithms/BinaryTree/14_BuildBinaryTree.py) - 根据中序和后序遍历构造二叉树
+- [`15_MaximumBinaryTree.py`](./Algorithms/BinaryTree/15_MaximumBinaryTree.py) - 二叉树的最大节点
+- [`16_MergeTwoBinaryTrees.py`](./Algorithms/BinaryTree/16_MergeTwoBinaryTrees.py) - 合并两个二叉树
+- [`17_SearchInBinaryTrees.py`](./Algorithms/BinaryTree/17_SearchInBinaryTrees.py) - BST查找节点
+- [`18_ValidateBinarySearchTree.py`](./Algorithms/BinaryTree/18_ValidateBinarySearchTree.py) - 验证二叉搜索树
+- [`19_MinAbsDiffInBST.py`](./Algorithms/BinaryTree/19_MinAbsDiffInBST.py) - BST最小绝对差值
+- [`20_FindModeInBST.py`](./Algorithms/BinaryTree/20_FindModeInBST.py) - BST众数查找
 - [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
+- [`check_binary_tree.py`](./Algorithms/BinaryTree/check_binary_tree.py) - 二叉树测试工具
 
 #### TwoPointer
 双指针相关算法实现
@@ -125,13 +132,14 @@ Python 数据结构与算法学习笔记
 
 ### 栈与队列
 - 括号匹配：栈的经典应用
-- 单调栈/队列：Next Greater Element、滑动窗口最值
+- 单调栈/队列：Next Greater Element、滑动窗口最大值
 - 堆：Top K 问题
 
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
 - 递归三要素：终止条件、返回值、单层逻辑
-- BST性质：中序遍历有序
+- BST性质：中序遍历有序、查找节点、验证BST
+- BST进阶：最小绝对差值、众数查找
 - 层序遍历：BFS队列法、DFS递归法
 - 深度计算：最大深度、最小深度
 - 翻转操作：递归与迭代实现
@@ -142,6 +150,12 @@ Python 数据结构与算法学习笔记
 - 路径问题：所有路径、路径总和、左叶子之和、左下角值
 - 树构造：根据中序和后序遍历构造二叉树
 - 进阶应用：锯齿形遍历、每层最大值、连接右侧节点
+- 树合并：合并两个二叉树
+- 最大值查找：二叉树的最大节点
+- BST查找：在BST中查找指定值节点
+- BST验证：判断是否为有效二叉搜索树
+- BST最小差值：利用中序遍历有序性
+- BST众数：中序遍历+实时统计/哈希表统计/Morris遍历
 
 ## 使用说明
 
