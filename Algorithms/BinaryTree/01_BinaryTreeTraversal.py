@@ -274,31 +274,3 @@ def postorderTraversal_iterative(root: TreeNode) -> List[int]:
     return res[::-1]
 
 
-# 测试代码
-if __name__ == "__main__":
-    """
-    构建测试二叉树：
-            1
-           / \
-          2   3
-         / \
-        4   5
-    """
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
-    root.left.right = TreeNode(5)
-    
-    print("=" * 50)
-    print("递归实现：")
-    print(f"前序遍历：{preorderTraversal(root)}")      # [1, 2, 4, 5, 3]
-    print(f"中序遍历：{inorderTraversal(root)}")       # [4, 2, 5, 1, 3]
-    print(f"后序遍历：{postorderTraversal(root)}")     # [4, 5, 2, 3, 1]
-    
-    print("=" * 50)
-    print("迭代实现：")
-    print(f"前序遍历：{preorderTraversal_iterative(root)}")   # [1, 2, 4, 5, 3]
-    print(f"中序遍历：{inorderTraversal_iterative(root)}")    # [4, 2, 5, 1, 3]
-    print(f"后序遍历：{postorderTraversal_iterative(root)}")  # [4, 5, 2, 3, 1]
-
