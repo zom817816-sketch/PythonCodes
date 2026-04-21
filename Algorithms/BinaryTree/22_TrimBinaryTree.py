@@ -106,7 +106,7 @@ def trimBST_General(root: Optional[TreeNode], low: int, high: int) -> Optional[T
 
 def trimBST_Iterative(root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
     """
-    迭代法修剪BST⭐
+    迭代法修剪BST⭐⭐⭐
     
     核心思路：
     1. 首先找到新的根节点（第一个值在[low, high]范围内的节点）
@@ -162,7 +162,7 @@ def trimBST_Iterative(root: Optional[TreeNode], low: int, high: int) -> Optional
 
 def trimBST_Stack(root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
     """
-    使用栈的迭代法 - 模拟递归过程⭐⭐⭐
+    使用栈的迭代法 - 模拟递归过程⭐⭐
     
     核心思路：
     使用栈保存需要处理的节点，对于每个节点：
