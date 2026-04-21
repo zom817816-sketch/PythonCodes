@@ -216,29 +216,3 @@ def get_paths_backtrack(root: Optional[TreeNode]) -> List[str]:
     
     backtrack(root)
     return res
-
-
-if __name__ == "__main__":
-    # 测试用例
-    # 构建二叉树：
-    #       1
-    #      / \
-    #     2   3
-    #      \
-    #       5
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.right = TreeNode(5)
-    
-    print("DFS递归方法:")
-    print(get_paths_dfs(root))
-    
-    print("\nDFS迭代方法:")
-    print(get_paths_dfs_iter(root))
-    
-    print("\nBFS迭代方法:")
-    print(get_paths_bfs_iter(root))
-    
-    print("\n回溯方法:")
-    print(get_paths_backtrack(root))
