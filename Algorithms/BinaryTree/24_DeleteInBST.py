@@ -15,7 +15,6 @@
 """
 
 from typing import Optional
-from typing import List
 
 
 class TreeNode:
@@ -28,7 +27,7 @@ class TreeNode:
 
 def deleteInBST(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
     """
-    递归删除BST中的节点
+    递归删除BST中的节点⭐⭐⭐
     
     算法思路：
     1. 如果 key < root.val，说明目标在左子树，递归到左子树删除
@@ -89,7 +88,7 @@ def deleteInBST(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
 #       
 def deleteInBST_with_predecessor(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
     """
-    递归删除BST中的节点，使用前驱节点替换
+    递归删除BST中的节点，使用前驱节点替换⭐⭐⭐
     
     前驱节点：左子树中的最大值（即左子树最右边的节点）
     适用于右子树较高的情况，可能平衡树的高度
@@ -127,7 +126,7 @@ def deleteInBST_with_predecessor(root: Optional[TreeNode], key: int) -> Optional
 #       
 def deleteInBST_iterative(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
     """
-    迭代法删除BST中的节点
+    迭代法删除BST中的节点⭐⭐⭐
     
     方法：
     1. 先找到要删除的节点及其父节点
@@ -198,7 +197,7 @@ def deleteInBST_iterative(root: Optional[TreeNode], key: int) -> Optional[TreeNo
 #       
 def deleteInBST_two_pointers(root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
     """
-    使用双指针的迭代法，更优雅地处理根节点删除
+    使用双指针的迭代法，更优雅地处理根节点删除⭐⭐⭐
     
     技巧：使用虚拟父节点(dummy)避免单独处理根节点
     """
