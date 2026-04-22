@@ -174,3 +174,32 @@ def lowestCommonAncestor_Path(root: Optional[TreeNode], p: TreeNode, q: TreeNode
     # 此时i指向第一个不同的位置，或者超出某条路径的长度
     # 所以i-1就是最后一个相同的节点，即LCA
     return path_p[i - 1]
+
+"""
+给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+百度百科中最近公共祖先的定义为："对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。"
+"""
+
+def lowestCommonAncestorBST(root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
+    # 确保q.val较小
+    if p.val > q.val: 
+        p, q = q, p 
+    # 如果当前节点值你两个都大，到左子树查找
+    if root.val > q.val: 
+        lowestCommonAncestorBST(root.left, p, q) 
+    # 如果当前节点值你两个都大，到左子树查找
+    elif root.val < p.val: 
+        lowestCommonAncestorBST(root.right, p, q)
+    # 否则当前节点就是LCA
+    else: 
+        return root
+
+
+def lowestCommonAncestorBST_iter(root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
+    while root: 
+        if root.val > p.val and root.val > q.val: 
+            root = root.left
+        elif root.val < p.val and root.val < q.val:
+            root = root.right
+        else: 
+            return root
