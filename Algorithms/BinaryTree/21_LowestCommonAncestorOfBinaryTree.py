@@ -175,31 +175,92 @@ def lowestCommonAncestor_Path(root: Optional[TreeNode], p: TreeNode, q: TreeNode
     # 所以i-1就是最后一个相同的节点，即LCA
     return path_p[i - 1]
 
+# ============================================================
+# BST的最近公共祖先（利用BST性质优化）
+# ============================================================
+
 """
 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
 百度百科中最近公共祖先的定义为："对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。"
+
+BST的LCA问题比普通二叉树更简单，因为可以利用BST的有序性：
+- 左子树所有节点值 < 根节点值
+- 右子树所有节点值 > 根节点值
+
+核心洞察：
+对于BST中的两个节点p和q（假设p.val <= q.val）：
+1. 如果 root.val > q.val，说明p和q都在左子树，LCA在左子树
+2. 如果 root.val < p.val，说明p和q都在右子树，LCA在右子树
+3. 如果 p.val <= root.val <= q.val，说明p和q分别在两侧（或当前节点就是p或q），当前节点就是LCA
 """
 
+
 def lowestCommonAncestorBST(root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
-    # 确保q.val较小
-    if p.val > q.val: 
-        p, q = q, p 
-    # 如果当前节点值你两个都大，到左子树查找
-    if root.val > q.val: 
-        lowestCommonAncestorBST(root.left, p, q) 
-    # 如果当前节点值你两个都大，到左子树查找
-    elif root.val < p.val: 
-        lowestCommonAncestorBST(root.right, p, q)
-    # 否则当前节点就是LCA
-    else: 
+    """
+    BST的最近公共祖先 - 递归法⭐⭐⭐
+    
+    利用BST性质，不需要遍历整棵树，时间复杂度O(H)，H为树高
+    
+    时间复杂度：O(H) - 只需从根走到LCA，平衡树O(logN)，最坏O(N)
+    空间复杂度：O(H) - 递归栈深度
+    """
+    # 【确保 p.val <= q.val】
+    # 这样方便后续判断，只需考虑p在左、q在右的情况
+    if p.val > q.val:
+        p, q = q, p
+    
+    # 【情况1：当前节点值比p和q都大】
+    # root.val > q.val >= p.val，说明p和q都在当前节点的左子树
+    # 根据BST性质，左子树所有值 < root.val，所以去左子树查找
+    if root.val > q.val:
+        return lowestCommonAncestorBST(root.left, p, q)
+    
+    # 【情况2：当前节点值比p和q都小】
+    # root.val < p.val <= q.val，说明p和q都在当前节点的右子树
+    # 根据BST性质，右子树所有值 > root.val，所以去右子树查找
+    elif root.val < p.val:
+        return lowestCommonAncestorBST(root.right, p, q)
+    
+    # 【情况3：当前节点值在p和q之间】
+    # p.val <= root.val <= q.val，说明：
+    # - p在左子树或p就是当前节点，q在右子树或q就是当前节点
+    # - 当前节点就是p和q的分叉点，即LCA
+    # 这个条件也涵盖了p或q就是当前节点的情况（节点可以是自己的祖先）
+    else:
         return root
 
 
 def lowestCommonAncestorBST_iter(root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
-    while root: 
-        if root.val > p.val and root.val > q.val: 
+    """
+    BST的最近公共祖先 - 迭代法⭐⭐⭐
+    
+    与递归法思路完全相同，但用循环实现，空间复杂度O(1)
+    
+    核心逻辑：
+    从根节点出发，根据当前节点值与p、q的大小关系决定向左还是向右，
+    直到找到分叉点（即LCA）
+    
+    时间复杂度：O(H) - 只需从根走到LCA
+    空间复杂度：O(1) - 只使用常数额外空间
+    """
+    while root:
+        # 【情况1：当前节点值比p和q都大】
+        # p和q都在左子树，向左移动
+        if root.val > p.val and root.val > q.val:
             root = root.left
+        
+        # 【情况2：当前节点值比p和q都小】
+        # p和q都在右子树，向右移动
         elif root.val < p.val and root.val < q.val:
             root = root.right
-        else: 
+        
+        # 【情况3：当前节点值在p和q之间（或等于其中一个）】
+        # 找到LCA，返回当前节点
+        # 包括以下子情况：
+        # - p.val <= root.val <= q.val（p在左或就是root，q在右或就是root）
+        # - q.val <= root.val <= p.val（同上，只是p和q交换）
+        else:
             return root
+    
+    # 如果树为空，返回None（理论上不会发生，因为p和q一定存在）
+    return None
