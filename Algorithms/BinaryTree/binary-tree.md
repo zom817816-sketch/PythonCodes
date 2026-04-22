@@ -631,27 +631,80 @@ def invert_tree(root):
 ### 判断对称二叉树
 ```python
 def is_symmetric(root):
-    def is_mirror(t1, t2):
-        if not t1 and not t2:
+    """
+    递归法
+    """
+    if not root: 
+        return True
+    def compare(left, right): 
+        if not left and not right: 
             return True
-        if not t1 or not t2:
+        if no left or not right: 
             return False
-        return (t1.val == t2.val and 
-                is_mirror(t1.left, t2.right) and 
-                is_mirror(t1.right, t2.left))
-    return is_mirror(root, root) if root else True
+        if left.val != right.val: 
+            return False
+        outside = compare(left.left, right.right)
+        inside = compare(left.right, right. left)
+        return outside and inside
+    return compare(root.left, root.right)
+def is_symmetric1(root):
+    """ 
+    迭代法
+    """
+    if not root: 
+        return True
+    stack = [root.left, root.right]
+    while stack: 
+        left = stack.pop(0)
+        right = stack.pop(0)
+        if left.val != right.val: 
+            return False
+        if not left and not right: 
+            continue
+        if not left or not right: 
+            return False
+        stack.append(left.left)
+        stack.append(right.left)
+        stack.append(left.right)
+        stack.append(right.left)
+    return True
 ```
 
 ### 求二叉树的最近公共祖先（LCA）
 ```python
 def lowest_common_ancestor(root, p, q):
-    if not root or root == p or root == q:
+    """
+    递归法求LCA
+    """
+    if not root or root == p or root == q: 
         return root
     left = lowest_common_ancestor(root.left, p, q)
     right = lowest_common_ancestor(root.right, p, q)
-    if left and right:
-        return root
-    return left if left else right
+    if left and right: 
+        return root 
+    return left or right
+
+def lowest_common_ancestor1(root, p, q):
+    """ 
+    迭代法求LCA
+    """ 
+    parent = {root: None}
+    stack = [root]
+    while p not in parent or q not in parent: 
+        node = stack.pop()
+        if node.left: 
+            parent[node.left] = node
+            stack.append(node.left)
+        if node.right: 
+            parent[node.right] = node
+            stack.append(node.right)
+    ancestors = set()
+    while p: 
+        ancestors.add(p)
+        p = parent[p]
+    while q not in ancestors: 
+        q = parent[q]
+    return q
 ```
 
 ### 二叉树的序列化与反序列化
