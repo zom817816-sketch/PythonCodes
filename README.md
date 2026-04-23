@@ -80,6 +80,12 @@
 - [`18_ValidateBinarySearchTree.py`](./Algorithms/BinaryTree/18_ValidateBinarySearchTree.py) - 验证二叉搜索树
 - [`19_MinAbsDiffInBST.py`](./Algorithms/BinaryTree/19_MinAbsDiffInBST.py) - BST最小绝对差值
 - [`20_FindModeInBST.py`](./Algorithms/BinaryTree/20_FindModeInBST.py) - BST众数查找
+- [`21_LowestCommonAncestorOfBinaryTree.py`](./Algorithms/BinaryTree/21_LowestCommonAncestorOfBinaryTree.py) - 二叉树最近公共祖先
+- [`22_TrimBinaryTree.py`](./Algorithms/BinaryTree/22_TrimBinaryTree.py) - 修剪二叉搜索树
+- [`23_InsertIntoBST.py`](./Algorithms/BinaryTree/23_InsertIntoBST.py) - BST插入节点
+- [`24_DeleteInBST.py`](./Algorithms/BinaryTree/24_DeleteInBST.py) - BST删除节点
+- [`25_ConvertSortedArrayToBST.py`](./Algorithms/BinaryTree/25_ConvertSortedArrayToBST.py) - 有序数组转BST（高度平衡）
+- [`26_ConvertBSTToGreaterTree.py`](./Algorithms/BinaryTree/26_ConvertBSTToGreaterTree.py) - BST转累加树
 - [`binary-tree.md`](./Algorithms/BinaryTree/binary-tree.md) - 二叉树知识点总结
 - [`check_binary_tree.py`](./Algorithms/BinaryTree/check_binary_tree.py) - 二叉树测试工具
 
@@ -139,7 +145,11 @@ Python 数据结构与算法学习笔记
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
 - 递归三要素：终止条件、返回值、单层逻辑
 - BST性质：中序遍历有序、查找节点、验证BST
-- BST进阶：最小绝对差值、众数查找
+- BST进阶：最小绝对差值、众数查找、最近公共祖先
+- BST增删：插入节点、删除节点（五种情况处理）
+- BST构造：有序数组转高度平衡BST
+- BST累加树：反中序遍历转换为累加树
+- BST修剪：区间修剪二叉搜索树
 - 层序遍历：BFS队列法、DFS递归法
 - 深度计算：最大深度、最小深度
 - 翻转操作：递归与迭代实现
