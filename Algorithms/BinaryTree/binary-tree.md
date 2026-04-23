@@ -777,24 +777,74 @@ graph TD
 
 ### 删除
 ```python
-def delete_node(root, key):
-    if not root:
-        return None
-    if key < root.val:
-        root.left = delete_node(root.left, key)
-    elif key > root.val:
-        root.right = delete_node(root.right, key)
-    else:
-        if not root.left:
+def delete_node_successor(root, key):
+    if not root: 
+        return None 
+    if root.val > key: 
+        root.left = delete_node_successor(root.left, key)
+    elif root.val < key: 
+        root.right = delete_node_successor(root.right, key)
+    else: 
+        if not root.left and not root.right: 
+            return None 
+        if not root.left: 
             return root.right
-        if not root.right:
+        if not root.right: 
+            return root.left 
+        successor = root.right
+        while successor.left: 
+            successor = successor.left
+        root.val = successor.val
+        root.right = delete_node_successor(root.right, successor.val)
+def delete_node_predcessor(root, key): 
+    if not root: 
+        return None
+    if root.val > key: 
+        root.left = delete_node_predcessor(root.left, key)
+    elif root.val < key: 
+        root.right = delete_node_predcessor(root.left, key)
+    else: 
+        if not root.left and not root.right: 
+            return None 
+        if not root.left: 
+            return root.right
+        if not root.right: 
             return root.left
-        # 找到右子树的最小节点
-        min_node = root.right
-        while min_node.left:
-            min_node = min_node.left
-        root.val = min_node.val
-        root.right = delete_node(root.right, min_node.val)
+        predcessor = root.left
+        while predcessor.right: 
+            predcessor = predcessor.right
+        root.val = predcesspr.val
+        root.left = delete_node_predcessor(root.left, predcessor.val)
+def delete_node_iter(root, key): 
+    if not root: 
+        return None
+    parent = None 
+    current = root
+    while current and current.val != key: 
+        parent = current
+        if key < current.val: 
+            current = current.left
+        else:
+            current = current.right
+    if not current: 
+        return root
+    target = current
+    if target.left and target.right: 
+        successor = target.right
+        successor_parent = target
+        while successor.left: 
+            successor_parent = successor
+            successor = successor.left
+        target.val = successor.val
+        target = successor
+        parent = successor_parent
+    child = target.left if target.left else target.right
+    if parent is None: 
+        root = child
+    elif parent.left is target: 
+        parent.left = child
+    else: 
+        parent.right = child
     return root
 ```
 
