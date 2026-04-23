@@ -750,6 +750,36 @@ def insert_into_bst(root, val):
     else:
         root.right = insert_into_bst(root.right, val)
     return root
+def insert_into_bst_iter(root, val): 
+    if not root: 
+        return TreeNode(val)
+    cur = root 
+    parent = None 
+    while cur: 
+        parent = cur 
+        if cur.val > val: 
+            cur = cur.left
+        elif cur.val < val: 
+            cur = cur.right
+    if parent.val > val: 
+        parent.left = TreeNode(val)
+    elif parent.val < val: 
+        parent.right = TreeNode(val)
+    return root
+def insert_into_bst_iter_simple(root, val): 
+    if not root: 
+        return TreeNode(val)
+    cur = root 
+    while cur: 
+        if cur.val > val: 
+            if not cur.left: 
+                cur.left = TreeNode(val)
+                break
+        elif cur.val < val: 
+            if not cur.right: 
+                cur.right = TreeNode(val)
+                break
+    return root
 ```
 
 插入示例：在BST中插入节点5
