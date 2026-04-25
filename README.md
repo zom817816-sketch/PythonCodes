@@ -94,6 +94,11 @@
 - [`01_ReplaceNumbers.py`](./Algorithms/TwoPointer/01_ReplaceNumbers.py) - 替换数字
 - [`双指针.md`](./Algorithms/TwoPointer/双指针.md) - 双指针知识点总结
 
+#### BackTracking
+回溯算法相关实现
+- [`01_Combinations.py`](./Algorithms/BackTracking/01_Combinations.py) - 组合问题（LeetCode 77）
+- [`回溯.md`](./Algorithms/BackTracking/回溯.md) - 回溯算法理论基础
+
 ### py_codes
 Python 数据结构与算法学习笔记
 
@@ -141,6 +146,13 @@ Python 数据结构与算法学习笔记
 - 单调栈/队列：Next Greater Element、滑动窗口最大值
 - 堆：Top K 问题
 
+### 回溯算法
+- 核心思想：DFS深度优先搜索 + 试错 + 剪枝
+- 解决的问题：组合、排列、子集、切割、棋盘问题
+- 算法模板：选择→递归→回溯三部曲
+- 剪枝优化：提前终止不可能的分支
+- 时间复杂度：通常为 O(N!) 或 O(2^N)
+
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
 - 递归三要素：终止条件、返回值、单层逻辑
@@ -179,6 +191,9 @@ python Algorithms/Stack/06_SlidingWindowMax.py
 
 # 运行二叉树算法
 python Algorithms/BinaryTree/14_BuildBinaryTree.py
+
+# 运行回溯算法
+python Algorithms/BackTracking/01_Combinations.py
 ```
 
 ### 运行学习笔记
