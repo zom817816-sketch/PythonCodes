@@ -61,29 +61,30 @@
 
 from typing import List
 
+
 def combine(n: int, k: int) -> List[List[int]]:
     """
     主函数：返回从 [1, n] 中选 k 个数的所有组合
-    
+
     参数：
         n: 可选数字范围的上界（范围是 1 到 n）
         k: 每个组合需要的数字个数
-    
+
     返回：
         所有可能的 k 数组合的列表
     """
-    res = []   # 存储所有满足条件的组合结果
+    res = []  # 存储所有满足条件的组合结果
     path = []  # 存储当前正在构建的组合路径（单条分支）
 
     def backtracking(start: int):
         """
         回溯函数：递归搜索所有组合
-        
+
         参数：
             start: 当前层可以选择的数字起始位置
         从 start 开始选择，保证组合内数字递增，避免重复
         """
-        #  终止条件 
+        #  终止条件
         # 当 path 中已有 k 个数字，说明找到一个有效组合
         if len(path) == k:
             # 注意：必须用 path[:] 切片复制！
@@ -91,31 +92,32 @@ def combine(n: int, k: int) -> List[List[int]]:
             # 后续 path.pop() 会导致 res 中的结果也被清空
             res.append(path[:])
             return
-        
-        #  单层搜索逻辑 
+
+        #  单层搜索逻辑
         # 遍历从 start 到 n 的所有可选数字
         for i in range(start, n + 1):
             # 1. 处理节点：将当前数字加入路径
             path.append(i)
-            
+
             # 2. 递归搜索：进入下一层
             #    下一层从 i+1 开始，避免重复使用 i
             backtracking(i + 1)
-            
+
             # 3. 回溯操作：撤销当前选择，恢复现场
             #    这一步非常重要！保证尝试其他分支时状态正确
             path.pop()
-        
+
         #  剪枝优化版（可选）
-        # 当剩余数字不够时，提前终止循环，减少搜索次数
-        # 还需要 k - len(path) 个数字
-        # 最多只能从 n - (k - len(path)) + 1 的位置开始选
-        # 
+        # 已经选择的元素个数：len(path);
+        # 所需需要的元素个数为: k - len(path);
+        # 列表中剩余元素（n-i） >= 所需需要的元素个数（k - len(path)）
+        # 在集合n中至多要从该起始位置 : i <= n - (k - len(path)) + 1，开始遍历
+        #
         # for i in range(start, n - (k - len(path)) + 2):
         #     path.append(i)
         #     backtracking(i + 1)
         #     path.pop()
-        
+
     # 从数字 1 开始搜索
     backtracking(1)
     return res
