@@ -97,6 +97,9 @@
 #### BackTracking
 回溯算法相关实现
 - [`01_Combinations.py`](./Algorithms/BackTracking/01_Combinations.py) - 组合问题（LeetCode 77）
+- [`02_CombinationSum3.py`](./Algorithms/BackTracking/02_CombinationSum3.py) - 组合总和 III（LeetCode 216）
+- [`03_LetterCombinationsOfAPhoneNumber.py`](./Algorithms/BackTracking/03_LetterCombinationsOfAPhoneNumber.py) - 电话号码的字母组合（LeetCode 17）
+- [`04_CombinationSum.py`](./Algorithms/BackTracking/04_CombinationSum.py) - 组合总和（LeetCode 39）
 - [`回溯.md`](./Algorithms/BackTracking/回溯.md) - 回溯算法理论基础
 
 ### py_codes
