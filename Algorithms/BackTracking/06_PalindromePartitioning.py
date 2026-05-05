@@ -67,7 +67,7 @@ from typing import List
 
 def partition(s: str) -> List[List[str]]:
     """
-    回溯法实现：分割回文串（基础版）
+    回溯法实现：分割回文串（基础版）⭐⭐
 
     ⏱ 时间复杂度：O(N * 2^N)
         - 每个字符间可以选择切或不切，共 2^(N-1) 种分割方案
@@ -153,7 +153,7 @@ def partition(s: str) -> List[List[str]]:
 
 def partition_optimized(s: str) -> List[List[str]]:
     """
-    回溯优化版：直接用索引判断回文，避免反复切片取子串
+    回溯优化版：直接用索引判断回文，避免反复切片取子串⭐⭐⭐
 
     优化点：
     - 不在每次调用 is_palindrome 时创建新的子串
