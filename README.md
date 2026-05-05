@@ -100,6 +100,8 @@
 - [`02_CombinationSum3.py`](./Algorithms/BackTracking/02_CombinationSum3.py) - 组合总和 III（LeetCode 216）
 - [`03_LetterCombinationsOfAPhoneNumber.py`](./Algorithms/BackTracking/03_LetterCombinationsOfAPhoneNumber.py) - 电话号码的字母组合（LeetCode 17）
 - [`04_CombinationSum.py`](./Algorithms/BackTracking/04_CombinationSum.py) - 组合总和（LeetCode 39）
+- [`05_CombinationSum2.py`](./Algorithms/BackTracking/05_CombinationSum2.py) - 组合总和 II（LeetCode 40）
+- [`06_PalindromePartitioning.py`](./Algorithms/BackTracking/06_PalindromePartitioning.py) - 分割回文串（LeetCode 131）
 - [`回溯.md`](./Algorithms/BackTracking/回溯.md) - 回溯算法理论基础
 
 ### py_codes
@@ -155,6 +157,11 @@ Python 数据结构与算法学习笔记
 - 算法模板：选择→递归→回溯三部曲
 - 剪枝优化：提前终止不可能的分支
 - 时间复杂度：通常为 O(N!) 或 O(2^N)
+- 组合问题：组合、组合总和 I/II/III，注意去重与剪枝
+- 切割问题：分割回文串，在字符串中搜索切割点
+  - 每个切割点尝试不同长度的子串
+  - 约束条件判断子串是否满足要求（如回文）
+  - 可用 DP 预处理优化约束条件判断
 
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
