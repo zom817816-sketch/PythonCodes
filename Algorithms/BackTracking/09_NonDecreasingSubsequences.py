@@ -17,10 +17,9 @@
 
 from typing import List
 
-
-# ------------------------------------------------------------
 # 解法一：回溯 + 哈希集合去重（标准解法）
-# ------------------------------------------------------------
+
+
 def findSubsequences(nums: List[int]) -> List[List[int]]:
     """
     思路：
@@ -45,7 +44,7 @@ def findSubsequences(nums: List[int]) -> List[List[int]]:
         # 当 path 长度 ≥ 2 时，记录当前子序列
         if len(path) >= 2:
             res.append(path[:])
-
+        # 这里没有return，因为我们需要的是所有可能的子序列
         # 本层已使用过的值（用于同层去重）
         used = set()
 
@@ -76,9 +75,9 @@ def findSubsequences(nums: List[int]) -> List[List[int]]:
     return res
 
 
-# ------------------------------------------------------------
 # 解法二：回溯 + 数组哈希去重（优化版）
-# ------------------------------------------------------------
+
+
 def findSubsequences_array_hash(nums: List[int]) -> List[List[int]]:
     """
     思路：
@@ -122,9 +121,9 @@ def findSubsequences_array_hash(nums: List[int]) -> List[List[int]]:
     return res
 
 
-# ------------------------------------------------------------
 # 解法三：回溯 + 剪枝 + 条件判断去重（不依赖额外数据结构）
-# ------------------------------------------------------------
+
+
 def findSubsequences_pruned(nums: List[int]) -> List[List[int]]:
     """
     思路：
@@ -168,9 +167,9 @@ def findSubsequences_pruned(nums: List[int]) -> List[List[int]]:
     return res
 
 
-# ------------------------------------------------------------
 # 解法四：使用二进制枚举（位运算）—— 思路拓展
-# ------------------------------------------------------------
+
+
 def findSubsequences_bit(nums: List[int]) -> List[List[int]]:
     """
     思路：
