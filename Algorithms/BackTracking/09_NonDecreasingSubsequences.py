@@ -17,13 +17,58 @@
 
 from typing import List
 
-# 解法一：回溯 + 哈希集合去重（标准解法）
+# 解法一：回溯 + 数组哈希去重（标准解法）
+
+
+def findSubsequences_array_hash(nums: List[int]) -> List[List[int]]:
+    """
+    思路：
+    但同层去重使用固定大小数组（201 个元素，映射 -100~100）⭐⭐⭐
+    代替哈希集合，利用数组 O(1) 访问更快。
+
+    为什么用数组？因为 nums[i] 范围是 [-100, 100]，共 201 个可能取值，
+    使用固定大小数组比哈希集合更高效。
+
+    时间复杂度：O(2^n × n)
+    空间复杂度：O(n)
+    """
+    res = []
+    path = []
+    n = len(nums)
+
+    def backtrack(start: int) -> None:
+        if len(path) >= 2:
+            res.append(path[:])
+
+        # 使用数组进行同层去重（偏移 +100 映射到 [0, 200]）
+        used = [False] * 201  # 用于标记 -100 ~ 100 是否已被使用
+
+        for i in range(start, n):
+            # 剪枝①：非递减约束
+            if path and nums[i] < path[-1]:
+                continue
+
+            # 剪枝②：同层去重
+            idx = nums[i] + 100  # 映射到数组下标
+            if used[idx]:
+                continue
+
+            used[idx] = True
+
+            path.append(nums[i])
+            backtrack(i + 1)
+            path.pop()
+
+    backtrack(0)
+    return res
+
+# 解法二：回溯 + 哈希集合去重
 
 
 def findSubsequences(nums: List[int]) -> List[List[int]]:
     """
     思路：
-    每一层递归中，枚举从 start 开始到末尾的所有元素作为候选。
+    每一层递归中，枚举从 start 开始到末尾的所有元素作为候选。⭐⭐
     对于每个候选元素 nums[i]：
       1. 非递减约束：只有 nums[i] >= path[-1] 时才能选（path 为空时任何元素都可选）
       2. 同层去重：在同一层递归中，已经用过的值不能再用（用 set 记录本层已选值）
@@ -74,60 +119,13 @@ def findSubsequences(nums: List[int]) -> List[List[int]]:
     backtrack(0)
     return res
 
-
-# 解法二：回溯 + 数组哈希去重（优化版）
-
-
-def findSubsequences_array_hash(nums: List[int]) -> List[List[int]]:
-    """
-    思路：
-    与解法一逻辑完全相同，但同层去重使用固定大小数组（201 个元素，映射 -100~100）
-    代替哈希集合，利用数组 O(1) 访问更快。
-
-    为什么用数组？因为 nums[i] 范围是 [-100, 100]，共 201 个可能取值，
-    使用固定大小数组比哈希集合更高效。
-
-    时间复杂度：O(2^n × n)
-    空间复杂度：O(n)
-    """
-    res = []
-    path = []
-    n = len(nums)
-
-    def backtrack(start: int) -> None:
-        if len(path) >= 2:
-            res.append(path[:])
-
-        # 使用数组进行同层去重（偏移 +100 映射到 [0, 200]）
-        used = [False] * 201  # 用于标记 -100 ~ 100 是否已被使用
-
-        for i in range(start, n):
-            # 剪枝①：非递减约束
-            if path and nums[i] < path[-1]:
-                continue
-
-            # 剪枝②：同层去重
-            idx = nums[i] + 100  # 映射到数组下标
-            if used[idx]:
-                continue
-
-            used[idx] = True
-
-            path.append(nums[i])
-            backtrack(i + 1)
-            path.pop()
-
-    backtrack(0)
-    return res
-
-
 # 解法三：回溯 + 剪枝 + 条件判断去重（不依赖额外数据结构）
 
 
 def findSubsequences_pruned(nums: List[int]) -> List[List[int]]:
     """
     思路：
-    同层去重不依赖 set 或数组，而是利用"排序后的相邻性判断"思路的变体——
+    同层去重不依赖 set 或数组，而是利用"排序后的相邻性判断"思路的变体——⭐⭐
     在当前层遍历时，检查在 start ~ i-1 之间是否出现过与 nums[i] 相同的值。
     如果出现过，说明 nums[i] 在本层是重复值，跳过。
 
@@ -173,7 +171,7 @@ def findSubsequences_pruned(nums: List[int]) -> List[List[int]]:
 def findSubsequences_bit(nums: List[int]) -> List[List[int]]:
     """
     思路：
-    用二进制掩码枚举所有子集（共 2^n 种），然后过滤出：
+    用二进制掩码枚举所有子集（共 2^n 种），然后过滤出：⭐
       1. 长度 ≥ 2
       2. 非递减
       3. 去重（用 set 去重）
