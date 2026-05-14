@@ -167,7 +167,7 @@ def permute_swap(nums: List[int]) -> List[List[int]]:
             # 递归：确定下一个位置
             backtrack(start + 1)
             
-            # 回溯：换回来，恢复状态
+            # 回溯：恢复数组状态，让其他分支能从正确的初始状态开始
             nums[start], nums[i] = nums[i], nums[start]
     
     backtrack(0)
