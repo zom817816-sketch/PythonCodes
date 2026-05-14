@@ -104,6 +104,9 @@
 - [`06_PalindromePartitioning.py`](./Algorithms/BackTracking/06_PalindromePartitioning.py) - 分割回文串（LeetCode 131）
 - [`07_RestoreIPAddresses.py`](./Algorithms/BackTracking/07_RestoreIPAddresses.py) - 恢复 IP 地址（LeetCode 93）
 - [`08_Subsets.py`](./Algorithms/BackTracking/08_Subsets.py) - 子集问题（LeetCode 78）
+- [`09_NonDecreasingSubsequences.py`](./Algorithms/BackTracking/09_NonDecreasingSubsequences.py) - 非递减子序列（LeetCode 491）
+- [`10_Permutations.py`](./Algorithms/BackTracking/10_Permutations.py) - 全排列（LeetCode 46）
+- [`11_Permutaions_ii.py`](./Algorithms/BackTracking/11_Permutaions_ii.py) - 全排列 II（LeetCode 47，含重复元素）
 - [`回溯.md`](./Algorithms/BackTracking/回溯.md) - 回溯算法理论基础
 
 ### py_codes
@@ -164,6 +167,10 @@ Python 数据结构与算法学习笔记
   - 每个切割点尝试不同长度的子串
   - 约束条件判断子串是否满足要求（如回文）
   - 可用 DP 预处理优化约束条件判断
+- 子集问题：子集（数组无重复元素），注意 != 组合（组合需满足特定条件，子集路径记录所有节点）
+- 排列问题：全排列 I/II，排列考虑顺序，每次从头遍历，用 used 数组标记已使用元素
+- 排列去重：全排列 II（数组含重复元素），排序+剪枝/哈希集合去重/计数器法
+- 非递减子序列：递增子序列（LeetCode 491），同层去重+非递减约束剪枝
 
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
