@@ -164,6 +164,21 @@ def dpMakeChange(coinValueList: list, change: int, minCoins: list) -> int:
     return minCoins[change]
 
 
+# 动态规划并且可以处理无法找零的情况
+@timer_decorator
+def dpMakeChangeOptimized(coinValueList: list, change: int) -> int:
+    # min_coins[i] = 凑出 i 元需要的最小硬币数
+    minCoins = [change + 1] * (change + 1)
+    minCoins[0] = 0  # 零元时找零零个硬币
+
+    for i in range(1, change + 1):
+        for c in coinValueList:
+            if c <= i:
+                minCoins[i] = min(minCoins[i], minCoins[i - c] + 1)
+
+    return minCoins[change] if minCoins[change] != change + 1 else -1
+
+
 def dpMakeChange_(coinValueList, change, minCoins, coinsUsed):
     for cents in range(change + 1):
         coinCount = cents
