@@ -92,6 +92,55 @@ def recDC(coinValueList: list, change: int, knownResults: list) -> int:
     return min_coins
 
 
+@timer_decorator
+def recDCOptmized(coinValueList: list, change: int, knownResults: list) -> int:
+    """
+    使用递归和记忆化方法解决找零问题。
+    子问题无解直接跳过，能够处理找零无解的情况
+
+    Args:
+        coinValueList (list): 硬币面值列表。
+        change (int): 目标金额。
+        knownResults (list): 已知结果列表。
+
+    Returns:
+        int: 最少需要的硬币数量。
+    """
+    # 1. 基准条件：金额为0，不需要硬币
+    if change == 0:
+        return 0
+    # 2. 金额负数，直接判定无解
+    if change < 0:
+        return -1
+    # 3. 本身就是硬币面值
+    if change in coinValueList:
+        knownResults[change] = 1
+        return 1
+    # 4. 已经算出结果，直接返回
+    if change in knownResults:
+        return knownResults[change]
+
+    min_coins = float("inf")
+
+    for coin in coinValueList:
+        if coin > change:
+            continue
+        # 递归求子问题
+        sub_min_coins = recDCOptmized(coinValueList, change - coin, knownResults)
+        # 子问题无解，跳过
+        if sub_min_coins == -1:
+            continue
+        min_coins = min(min_coins, 1 + sub_min_coins)
+
+    # 记录结果：有解存数量，无解存-1
+    if min_coins != float("inf"):
+        knownResults[change] = min_coins
+        return min_coins
+    else:
+        knownResults[change] = -1
+        return -1
+
+
 # 动态规划
 @timer_decorator
 def dpMakeChange(coinValueList: list, change: int, minCoins: list) -> int:
