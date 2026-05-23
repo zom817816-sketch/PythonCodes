@@ -42,7 +42,7 @@ def findContentChildren(g: List[int], s: List[int]) -> int:
 
 
 # 优先喂饱小胃口
-def findContentChildren(g: List[int], s: List[int]) -> int:
+def findContentChildren_different_order(g: List[int], s: List[int]) -> int:
     # 将孩子的贪心因子排序
     g.sort()
     # 将饼干的尺寸排序
