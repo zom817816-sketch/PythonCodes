@@ -107,7 +107,7 @@
 
 解题思路：
 
-方法1：贪心算法（推荐）⭐
+方法1：贪心算法（推荐）
 - 核心：所有正差值之和
 - 只要明天价格比今天高，今天买明天卖
 - 时间复杂度：O(n)
@@ -130,7 +130,7 @@ from typing import List
 # 方法1：贪心算法
 def maxProfit_greedy(prices: List[int]) -> int:
     """
-    贪心算法：所有正差值之和
+    贪心算法：所有正差值之和⭐⭐⭐
 
     核心思想：
     只要 prices[i+1] > prices[i]，就赚取这段差值
@@ -147,7 +147,7 @@ def maxProfit_greedy(prices: List[int]) -> int:
     3. 返回总和
     """
     profit = 0
-    for i in range(len(prices) - 1):
+    for i in range(len(prices) - 1): # 对于长度 < 2 的情况，range(0) 或 range(-1) 直接产生空序列，循环不执行
         diff = prices[i + 1] - prices[i]
         if diff > 0:
             profit += diff
@@ -157,7 +157,11 @@ def maxProfit_greedy(prices: List[int]) -> int:
 # 方法2：动态规划（状态机）
 def maxProfit_dp(prices: List[int]) -> int:
     """
-    动态规划：状态机解法
+    动态规划：状态机解法⭐⭐⭐
+
+    每天开盘你只有两个选择：
+    1. 什么都不做 → 状态不变
+    2. 操作 → 空仓变持仓（买入），或持仓变空仓（卖出）
 
     状态定义：
     - cash[i] = 第i天结束时不持有股票的最大利润
@@ -180,13 +184,14 @@ def maxProfit_dp(prices: List[int]) -> int:
     if n <= 1:
         return 0
 
-    cash = 0      # 不持有股票
-    hold = -prices[0]  # 持有股票（花prices[0]买入）
+    cash = 0      # 第0天结束，不持有股票 → 利润为0
+    hold = -prices[0]  # 第0天结束，持有股票 → 花了 prices[0] 的钱买入
 
-    for i in range(1, n):
-        # 可能的两种状态
-        new_cash = max(cash, hold + prices[i])  # 不持有：之前就不持，或卖掉
-        new_hold = max(hold, cash - prices[i])  # 持有：之前就持，或买入
+    for i in range(1, n): # 从第1天遍历到第n-1天
+        # 不持有：昨天就不持有，今天还是不持有，什么都不做；昨天持有，今天以 prices[i] 卖掉，回笼资金
+        new_cash = max(cash, hold + prices[i])
+        # 持有：昨天就持有，今天继续拿着，什么都不做；昨天空仓，今天以 prices[i] 买入，现金减少
+        new_hold = max(hold, cash - prices[i])
 
         cash = new_cash
         hold = new_hold
@@ -197,7 +202,7 @@ def maxProfit_dp(prices: List[int]) -> int:
 # 方法3：峰谷法
 def maxProfit_peak_valley(prices: List[int]) -> int:
     """
-    峰谷法：找到所有上升区间
+    峰谷法：找到所有上升区间⭐⭐⭐
 
     核心思想：
     1. 找到连续的上升段（从谷到峰）
@@ -243,7 +248,7 @@ def maxProfit_peak_valley(prices: List[int]) -> int:
 
 def maxProfit_two_pointer(prices: List[int]) -> int:
     """
-    双指针法：左右指针遍历
+    双指针法：左右指针遍历⭐⭐
 
     核心思想：
     - left指针指向买入时机
