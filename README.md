@@ -107,7 +107,23 @@
 - [`09_NonDecreasingSubsequences.py`](./Algorithms/BackTracking/09_NonDecreasingSubsequences.py) - 非递减子序列（LeetCode 491）
 - [`10_Permutations.py`](./Algorithms/BackTracking/10_Permutations.py) - 全排列（LeetCode 46）
 - [`11_Permutaions_ii.py`](./Algorithms/BackTracking/11_Permutaions_ii.py) - 全排列 II（LeetCode 47，含重复元素）
+- [`12_Subsets_ii.py`](./Algorithms/BackTracking/12_Subsets_ii.py) - 子集 II（LeetCode 90，含重复元素）
+- [`13_NQueens.py`](./Algorithms/BackTracking/13_NQueens.py) - N 皇后问题（LeetCode 51）
+- [`14_Sudoku.py`](./Algorithms/BackTracking/14_Sudoku.py) - 解数独（LeetCode 37）
 - [`回溯.md`](./Algorithms/BackTracking/回溯.md) - 回溯算法理论基础
+
+#### GreedyAlgorithms
+贪心算法相关实现
+- [`01_AssignCookies.py`](./Algorithms/GreedyAlgorithms/01_AssignCookies.py) - 分发饼干（LeetCode 455）
+- [`02_WiggleSubsequence.py`](./Algorithms/GreedyAlgorithms/02_WiggleSubsequence.py) - 摆动序列（LeetCode 376）
+- [`03_MaxSubArray.py`](./Algorithms/GreedyAlgorithms/03_MaxSubArray.py) - 最大子数组和（LeetCode 53）
+- [`04_BestTimeToSellAndBuyStock.py`](./Algorithms/GreedyAlgorithms/04_BestTimeToSellAndBuyStock.py) - 买卖股票的最佳时机 II（LeetCode 122）
+- [`05_JumpGame.py`](./Algorithms/GreedyAlgorithms/05_JumpGame.py) - 跳跃游戏（LeetCode 55）
+- [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
+
+#### DynamicPlanning
+动态规划相关算法实现
+- [`01_BestTimeToSellAndBuyStock_i.py`](./Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py) - 买卖股票的最佳时机（LeetCode 121）
 
 ### py_codes
 Python 数据结构与算法学习笔记
@@ -167,10 +183,22 @@ Python 数据结构与算法学习笔记
   - 每个切割点尝试不同长度的子串
   - 约束条件判断子串是否满足要求（如回文）
   - 可用 DP 预处理优化约束条件判断
-- 子集问题：子集（数组无重复元素），注意 != 组合（组合需满足特定条件，子集路径记录所有节点）
+- 子集问题：子集（数组无重复元素），注意 != 组合（组合需满足特定条件，子集路径记录所有节点），子集 II（含重复元素，需排序+去重）
 - 排列问题：全排列 I/II，排列考虑顺序，每次从头遍历，用 used 数组标记已使用元素
 - 排列去重：全排列 II（数组含重复元素），排序+剪枝/哈希集合去重/计数器法
 - 非递减子序列：递增子序列（LeetCode 491），同层去重+非递减约束剪枝
+- 棋盘问题：N 皇后（LeetCode 51）、解数独（LeetCode 37），二维递归
+
+### 贪心算法
+- 核心思想：局部最优 → 全局最优，无需回溯
+- 适用场景：最优子结构、无后效性
+- 常见题型：分发饼干、摆动序列、最大子数组和、买卖股票、跳跃游戏
+- 解题步骤：分解子问题 → 确定贪心策略 → 求解
+
+### 动态规划
+- 核心思想：最优子结构 + 重叠子问题
+- DP 五部曲：确定 dp 数组含义 → 递推公式 → 初始化 → 遍历顺序 → 打印验证
+- 常见题型：股票买卖、背包问题、打家劫舍、子序列问题
 
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
@@ -213,6 +241,12 @@ python Algorithms/BinaryTree/14_BuildBinaryTree.py
 
 # 运行回溯算法
 python Algorithms/BackTracking/01_Combinations.py
+
+# 运行贪心算法
+python Algorithms/GreedyAlgorithms/01_AssignCookies.py
+
+# 运行动态规划
+python Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py
 ```
 
 ### 运行学习笔记
