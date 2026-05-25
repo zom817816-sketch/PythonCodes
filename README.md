@@ -119,7 +119,16 @@
 - [`03_MaxSubArray.py`](./Algorithms/GreedyAlgorithms/03_MaxSubArray.py) - 最大子数组和（LeetCode 53）
 - [`04_BestTimeToSellAndBuyStock.py`](./Algorithms/GreedyAlgorithms/04_BestTimeToSellAndBuyStock.py) - 买卖股票的最佳时机 II（LeetCode 122）
 - [`05_JumpGame.py`](./Algorithms/GreedyAlgorithms/05_JumpGame.py) - 跳跃游戏（LeetCode 55）
+- [`06_JumpGame_ii.py`](./Algorithms/GreedyAlgorithms/06_JumpGame_ii.py) - 跳跃游戏 II（LeetCode 45，贪心 + BFS + 回溯 + DP 四种解法）
 - [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
+
+#### DeepFirstSearch
+深度优先搜索（DFS）相关算法实现
+- [`01_JumpGame_iii.py`](./Algorithms/DeepFirstSearch/01_JumpGame_iii.py) - 跳跃游戏 III（LeetCode 1306，DFS + BFS + 记忆化搜索 + 迭代DFS 四种解法）
+
+#### BreadthFirstSearch
+广度优先搜索（BFS）相关算法实现
+- [`01_JumpGame_iv.py`](./Algorithms/BreadthFirstSearch/01_JumpGame_iv.py) - 跳跃游戏 IV（LeetCode 1345，BFS + 同值分组 + 逐层处理 + 双向BFS 三种解法）
 
 #### DynamicPlanning
 动态规划相关算法实现
