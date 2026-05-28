@@ -120,6 +120,11 @@
 - [`04_BestTimeToSellAndBuyStock.py`](./Algorithms/GreedyAlgorithms/04_BestTimeToSellAndBuyStock.py) - 买卖股票的最佳时机 II（LeetCode 122）
 - [`05_JumpGame.py`](./Algorithms/GreedyAlgorithms/05_JumpGame.py) - 跳跃游戏（LeetCode 55）
 - [`06_JumpGame_ii.py`](./Algorithms/GreedyAlgorithms/06_JumpGame_ii.py) - 跳跃游戏 II（LeetCode 45，贪心 + BFS + 回溯 + DP 四种解法）
+- [`07_MaximizeSumOfArrayAfterKNegations.py`](./Algorithms/GreedyAlgorithms/07_MaximizeSumOfArrayAfterKNegations.py) - 最大化数组取反后的和（LeetCode 1005，贪心 + 排序 + 最小堆三种解法）
+- [`08_GasStation.py`](./Algorithms/GreedyAlgorithms/08_GasStation.py) - 加油站（LeetCode 134，贪心算法）
+- [`09_Candy.py`](./Algorithms/GreedyAlgorithms/09_Candy.py) - 分发糖果（LeetCode 135）
+- [`10_LemonadeChange.py`](./Algorithms/GreedyAlgorithms/10_LemonadeChange.py) - 柠檬水找零（LeetCode 860）
+- [`11_ReconstructQueue.py`](./Algorithms/GreedyAlgorithms/11_ReconstructQueue.py) - 根据身高重建队列（LeetCode 406）
 - [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
 
 #### DeepFirstSearch
