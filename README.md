@@ -125,6 +125,9 @@
 - [`09_Candy.py`](./Algorithms/GreedyAlgorithms/09_Candy.py) - 分发糖果（LeetCode 135）
 - [`10_LemonadeChange.py`](./Algorithms/GreedyAlgorithms/10_LemonadeChange.py) - 柠檬水找零（LeetCode 860）
 - [`11_ReconstructQueue.py`](./Algorithms/GreedyAlgorithms/11_ReconstructQueue.py) - 根据身高重建队列（LeetCode 406）
+- [`12_FindMinArrowShots.py`](./Algorithms/GreedyAlgorithms/12_FindMinArrowShots.py) - 用最少数量的箭引爆气球（LeetCode 452）
+- [`13_NonOverlappingIntervals.py`](./Algorithms/GreedyAlgorithms/13_NonOverlappingIntervals.py) - 无重叠区间（LeetCode 435）
+- [`14_PartitionLabels.py`](./Algorithms/GreedyAlgorithms/14_PartitionLabels.py) - 划分字母区间（LeetCode 763）
 - [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
 
 #### DeepFirstSearch
@@ -207,6 +210,7 @@ Python 数据结构与算法学习笔记
 - 核心思想：局部最优 → 全局最优，无需回溯
 - 适用场景：最优子结构、无后效性
 - 常见题型：分发饼干、摆动序列、最大子数组和、买卖股票、跳跃游戏
+- 区间问题：最少箭数引爆气球、无重叠区间、划分字母区间
 - 解题步骤：分解子问题 → 确定贪心策略 → 求解
 
 ### 动态规划
