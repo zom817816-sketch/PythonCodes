@@ -128,6 +128,7 @@
 - [`12_FindMinArrowShots.py`](./Algorithms/GreedyAlgorithms/12_FindMinArrowShots.py) - 用最少数量的箭引爆气球（LeetCode 452）
 - [`13_NonOverlappingIntervals.py`](./Algorithms/GreedyAlgorithms/13_NonOverlappingIntervals.py) - 无重叠区间（LeetCode 435）
 - [`14_PartitionLabels.py`](./Algorithms/GreedyAlgorithms/14_PartitionLabels.py) - 划分字母区间（LeetCode 763）
+- [`15_MergeIntervals.py`](./Algorithms/GreedyAlgorithms/15_MergeIntervals.py) - 合并区间（LeetCode 56）
 - [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
 
 #### DeepFirstSearch
