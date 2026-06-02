@@ -72,7 +72,6 @@
 
 from typing import List
 
-
 # ══════════════════════════════════════════════════════════
 # 解法一：暴力枚举（纯暴力，超时）
 # ══════════════════════════════════════════════════════════
@@ -99,6 +98,7 @@ def monotoneIncreasingDigits_brute(n: int) -> int:
        仅作为理解题意的参考。
        实际做题请用贪心解法。
     """
+
     def is_monotone_increasing(num: int) -> bool:
         """检查数字是否单调递增（从低位到高位检查）"""
         max_digit = 10  # 初始化为 10，确保第一个数字一定 <= max_digit
@@ -139,20 +139,6 @@ def monotoneIncreasingDigits(n: int) -> List[int]:
 
     为什么从右向左？
     ────────────────────────────────────────────────────────
-    示例：n = 332
-        从左向右：
-            3 <= 3 ✓，3 > 2 ✗ 下降！
-            将第一个 3 减 1 得 2，后面变 9 → 229
-            但 229 中 2 <= 2 ✓，2 <= 9 ✓，是单调递增的 ✓
-            等等，这样是对的？
-        再看 n = 100：
-            从左向右：
-                1 > 0 ✗ 下降！
-                将 1 减 1 得 0，后面变 9 → 099 = 99 ✓
-            这样也对？
-        再看 n = 668841：
-            从左向右找到 8 > 4，将 8 减 1 得 667941... 不对！
-
     实际上，从左向右的问题在于：
     - 修改一个位置后，可能导致前面又出现下降
     - 比如 332，如果先处理 3>2，变成 329，但 3>2 仍然下降
@@ -236,10 +222,10 @@ def monotoneIncreasingDigits(n: int) -> List[int]:
 
     # 将 flag 位置及之后的所有数字变成 9
     for i in range(flag, len(num_str)):
-        num_str[i] = '9'
+        num_str[i] = "9"
 
     # 转回整数返回
-    return int(''.join(num_str))
+    return int("".join(num_str))
 
 
 # ══════════════════════════════════════════════════════════
@@ -288,7 +274,7 @@ def monotoneIncreasingDigits_optimized(n: int) -> int:
         if num_str[i - 1] > num_str[i]:
             flag = i
             # 构造新字符串：前 i-1 位 + (第 i-1 位减 1) + 第 i 位及之后
-            num_str = num_str[:i - 1] + str(int(num_str[i - 1]) - 1) + num_str[i:]
+            num_str = num_str[: i - 1] + str(int(num_str[i - 1]) - 1) + num_str[i:]
 
     # 构造结果：前 flag 位 + 后面全是 9
     num_str = num_str[:flag] + "9" * (len(num_str) - flag)
