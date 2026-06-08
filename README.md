@@ -128,7 +128,9 @@
 - [`12_FindMinArrowShots.py`](./Algorithms/GreedyAlgorithms/12_FindMinArrowShots.py) - 用最少数量的箭引爆气球（LeetCode 452）
 - [`13_NonOverlappingIntervals.py`](./Algorithms/GreedyAlgorithms/13_NonOverlappingIntervals.py) - 无重叠区间（LeetCode 435）
 - [`14_PartitionLabels.py`](./Algorithms/GreedyAlgorithms/14_PartitionLabels.py) - 划分字母区间（LeetCode 763）
-- [`15_MergeIntervals.py`](./Algorithms/GreedyAlgorithms/15_MergeIntervals.py) - 合并区间（LeetCode 56）
+- [`15_MergeIntervals.py`](./Algorithms/GreedyAlgorithms/15_MergeIntervals.py) - 合并区间（LeetCode 56，三种贪心解法）
+- [`16_MonotoneIncreasingDigits.py`](./Algorithms/GreedyAlgorithms/16_MonotoneIncreasingDigits.py) - 单调递增的数字（LeetCode 738，四种解法）
+- [`17_BinaryTreeCameras.py`](./Algorithms/GreedyAlgorithms/17_BinaryTreeCameras.py) - 监控二叉树（LeetCode 968，贪心算法）
 - [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) - 贪心算法知识点总结
 
 #### DeepFirstSearch
@@ -142,6 +144,10 @@
 #### DynamicPlanning
 动态规划相关算法实现
 - [`01_BestTimeToSellAndBuyStock_i.py`](./Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py) - 买卖股票的最佳时机（LeetCode 121）
+- [`02_FibonacciNumber.py`](./Algorithms/DynamicPlanning/02_FibonacciNumber.py) - 斐波那契数（LeetCode 509，四种解法）
+- [`03_ClimbingStairs.py`](./Algorithms/DynamicPlanning/03_ClimbingStairs.py) - 爬楼梯（LeetCode 70，四种解法）
+- [`03_MinCostClimbingStairs.py`](./Algorithms/DynamicPlanning/03_MinCostClimbingStairs.py) - 使用最小花费爬楼梯（LeetCode 746，五种解法）
+- [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
 Python 数据结构与算法学习笔记
