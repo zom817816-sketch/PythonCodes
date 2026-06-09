@@ -146,7 +146,7 @@
 - [`01_BestTimeToSellAndBuyStock_i.py`](./Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py) - 买卖股票的最佳时机（LeetCode 121）
 - [`02_FibonacciNumber.py`](./Algorithms/DynamicPlanning/02_FibonacciNumber.py) - 斐波那契数（LeetCode 509，四种解法）
 - [`03_ClimbingStairs.py`](./Algorithms/DynamicPlanning/03_ClimbingStairs.py) - 爬楼梯（LeetCode 70，四种解法）
-- [`03_MinCostClimbingStairs.py`](./Algorithms/DynamicPlanning/03_MinCostClimbingStairs.py) - 使用最小花费爬楼梯（LeetCode 746，五种解法）
+- [`04_MinCostClimbingStairs.py`](./Algorithms/DynamicPlanning/04_MinCostClimbingStairs.py) - 使用最小花费爬楼梯（LeetCode 746，五种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
