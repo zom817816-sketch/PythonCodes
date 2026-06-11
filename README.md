@@ -147,6 +147,10 @@
 - [`02_FibonacciNumber.py`](./Algorithms/DynamicPlanning/02_FibonacciNumber.py) - 斐波那契数（LeetCode 509，四种解法）
 - [`03_ClimbingStairs.py`](./Algorithms/DynamicPlanning/03_ClimbingStairs.py) - 爬楼梯（LeetCode 70，四种解法）
 - [`04_MinCostClimbingStairs.py`](./Algorithms/DynamicPlanning/04_MinCostClimbingStairs.py) - 使用最小花费爬楼梯（LeetCode 746，五种解法）
+- [`05_UniquePaths.py`](./Algorithms/DynamicPlanning/05_UniquePaths.py) - 不同路径（LeetCode 62，三种解法）
+- [`06_UniquePaths.py`](./Algorithms/DynamicPlanning/06_UniquePaths.py) - 不同路径 II（LeetCode 63，含障碍物，三种解法）
+- [`07_IntegerBreak.py`](./Algorithms/DynamicPlanning/07_IntegerBreak.py) - 整数拆分（LeetCode 343，四种解法）
+- [`08_UniqueBST.py`](./Algorithms/DynamicPlanning/08_UniqueBST.py) - 不同的二叉搜索树（LeetCode 96，四种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
