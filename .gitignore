@@ -2,3 +2,5 @@
 /.ruff_cache
 /.ipynb_checkpoints
 /.__pycache__
+Algorithms/BinaryTree/temporary.py
+**/practice.py
