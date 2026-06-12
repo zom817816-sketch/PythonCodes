@@ -151,6 +151,7 @@
 - [`06_UniquePaths.py`](./Algorithms/DynamicPlanning/06_UniquePaths.py) - 不同路径 II（LeetCode 63，含障碍物，三种解法）
 - [`07_IntegerBreak.py`](./Algorithms/DynamicPlanning/07_IntegerBreak.py) - 整数拆分（LeetCode 343，四种解法）
 - [`08_UniqueBST.py`](./Algorithms/DynamicPlanning/08_UniqueBST.py) - 不同的二叉搜索树（LeetCode 96，四种解法）
+- [`09_MaxResearchMaterials.py`](./Algorithms/DynamicPlanning/09_MaxResearchMaterials.py) - 研究材料选择（0-1背包问题，四种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
