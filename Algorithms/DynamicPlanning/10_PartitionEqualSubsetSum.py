@@ -172,7 +172,7 @@ def canPartition_memo(nums: list) -> bool:
     - memo[i][j] = 从第 i 个元素开始，能否凑成和 j
 
     状态转移：
-    - memo[i][j] = memo[i+1][j] or memo[i+1][j-nums[i]]（如果 j >= nums[i]）
+    - memo[i][j] = memo[i+1][j-nums[i]] or memo[i+1][j]（如果 j >= nums[i]，否则只考虑后者）
     """
     total = sum(nums)
     if total % 2 != 0:
@@ -247,10 +247,10 @@ def canPartition_dp(nums: list) -> bool:
     
                 0   1   2   3   4   5   6   7   8   9  10  11
     初始化      T   F   F   F   F   F   F   F   F   F   F   F
-    i=0 (num=1) T   T   F   F   F   F   F   F   F   F   F   F
-    i=1 (num=5) T   T   F   F   F   T   T   F   F   F   F   F
-    i=2 (num=11)T   T   F   F   F   T   T   F   F   F   F   T
-    i=3 (num=5) T   T   F   F   F   T   T   F   F   F   T   T
+    i=1 (num=1) T   F   F   F   F   F   F   F   F   F   F   F
+    i=2 (num=5) T   T   F   F   F   T   T   F   F   F   F   F
+    i=3 (num=11)T   T   F   F   F   T   T   F   F   F   F   T
+    i=4 (num=5) T   T   F   F   F   T   T   F   F   F   T   T
 
     dp[4][11] = T ✓
 
@@ -325,25 +325,26 @@ def canPartition(nums: list) -> bool:
     dp = [T, F, F, F, F, F, F, F, F, F, F, F]
     
     遍历 num = 1（从后往前）：
-        dp[11] = dp[11] or dp[10] = T or F = T
+        dp[11] = dp[11] or dp[10] = F or F = F
         dp[10] = dp[10] or dp[9] = F or F = F
         ...
         dp[1] = dp[1] or dp[0] = F or T = T
-    dp = [T, T, F, F, F, F, F, F, F, F, F, T]
+    dp = [T, T, F, F, F, F, F, F, F, F, F, F]
     
     遍历 num = 5（从后往前）：
-        dp[11] = dp[11] or dp[6] = T or F = T
+        dp[11] = dp[11] or dp[6] = F or F = F
         dp[10] = dp[10] or dp[5] = F or F = F
         ...
         dp[5] = dp[5] or dp[0] = F or T = T
-    dp = [T, T, F, F, F, T, T, F, F, F, F, T]
-    
+    dp = [T, T, F, F, F, T, T, F, F, F, F, F]
+
     遍历 num = 11（从后往前）：
-        dp[11] = dp[11] or dp[0] = T or T = T
+        dp[11] = dp[11] or dp[0] = F or T = T
     dp = [T, T, F, F, F, T, T, F, F, F, F, T]
-    
+
     遍历 num = 5（从后往前）：
         dp[11] = dp[11] or dp[6] = T or T = T
+        dp[10] = dp[10] or dp[5] = F or T = T
     dp = [T, T, F, F, F, T, T, F, F, F, T, T]
 
     dp[11] = T ✓
