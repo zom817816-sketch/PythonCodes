@@ -152,6 +152,7 @@
 - [`07_IntegerBreak.py`](./Algorithms/DynamicPlanning/07_IntegerBreak.py) - 整数拆分（LeetCode 343，四种解法）
 - [`08_UniqueBST.py`](./Algorithms/DynamicPlanning/08_UniqueBST.py) - 不同的二叉搜索树（LeetCode 96，四种解法）
 - [`09_MaxResearchMaterials.py`](./Algorithms/DynamicPlanning/09_MaxResearchMaterials.py) - 研究材料选择（0-1背包问题，四种解法）
+- [`10_PartitionEqualSubsetSum.py`](./Algorithms/DynamicPlanning/10_PartitionEqualSubsetSum.py) - 分割等和子集（LeetCode 416，四种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
