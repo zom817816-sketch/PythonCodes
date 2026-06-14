@@ -289,7 +289,7 @@ def canPartition_dp(nums: list) -> bool:
 
             # 选择第 i 个元素（如果可以装入）
             if j >= nums[i - 1]:
-                dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]]
+                dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]] # 注意是i-1而不是i
 
     return dp[n][target]
 
