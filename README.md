@@ -153,6 +153,9 @@
 - [`08_UniqueBST.py`](./Algorithms/DynamicPlanning/08_UniqueBST.py) - 不同的二叉搜索树（LeetCode 96，四种解法）
 - [`09_MaxResearchMaterials.py`](./Algorithms/DynamicPlanning/09_MaxResearchMaterials.py) - 研究材料选择（0-1背包问题，四种解法）
 - [`10_PartitionEqualSubsetSum.py`](./Algorithms/DynamicPlanning/10_PartitionEqualSubsetSum.py) - 分割等和子集（LeetCode 416，四种解法）
+- [`11_LastStoneWeight_ii.py`](./Algorithms/DynamicPlanning/11_LastStoneWeight_ii.py) - 最后一块石头的重量 II（LeetCode 1049，四种解法）
+- [`12_TargetSum.py`](./Algorithms/DynamicPlanning/12_TargetSum.py) - 目标和（LeetCode 494，四种解法）
+- [`13_OnesAndZeros.py`](./Algorithms/DynamicPlanning/13_OnesAndZeros.py) - 一和零（LeetCode 474，四种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
@@ -229,7 +232,7 @@ Python 数据结构与算法学习笔记
 ### 动态规划
 - 核心思想：最优子结构 + 重叠子问题
 - DP 五部曲：确定 dp 数组含义 → 递推公式 → 初始化 → 遍历顺序 → 打印验证
-- 常见题型：股票买卖、背包问题、打家劫舍、子序列问题
+- 常见题型：股票买卖、背包问题（0-1背包、完全背包）、打家劫舍、子序列问题、分割等和子集、目标和、一和零
 
 ### 二叉树
 - 遍历：前序、中序、后序、层序（统一迭代标记法）
