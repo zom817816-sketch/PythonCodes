@@ -360,7 +360,9 @@ def findTargetSumWays(nums: list, target: int) -> int:
 
     for num in nums:
         # 从后往前遍历，避免重复选择同一个数字
-        for j in range(target_sum, num - 1, -1):
+        for j in range(
+            target_sum, num - 1, -1
+        ):  # 为什么是遍历到num:dp[j] = dp[j] + dp[j - num],所以需要防止数组越界；逻辑上，也无法将一个比容量大的数字放入背包
             dp[j] += dp[j - num]
 
     return dp[target_sum]
