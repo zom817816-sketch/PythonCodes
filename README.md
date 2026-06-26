@@ -156,6 +156,9 @@
 - [`11_LastStoneWeight_ii.py`](./Algorithms/DynamicPlanning/11_LastStoneWeight_ii.py) - 最后一块石头的重量 II（LeetCode 1049，四种解法）
 - [`12_TargetSum.py`](./Algorithms/DynamicPlanning/12_TargetSum.py) - 目标和（LeetCode 494，四种解法）
 - [`13_OnesAndZeros.py`](./Algorithms/DynamicPlanning/13_OnesAndZeros.py) - 一和零（LeetCode 474，四种解法）
+- [`14_CoinChange_ii.py`](./Algorithms/DynamicPlanning/14_CoinChange_ii.py) - 零钱兑换 II（LeetCode 518，完全背包求组合数）
+- [`15_CombinationSum_iv.py`](./Algorithms/DynamicPlanning/15_CombinationSum_iv.py) - 组合总和 IV（LeetCode 377，求排列数）
+- [`16_ClimbStairs.py`](./Algorithms/DynamicPlanning/16_ClimbStairs.py) - 爬楼梯扩展版（每次可爬至多 m 阶）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
