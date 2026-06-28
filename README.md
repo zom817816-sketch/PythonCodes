@@ -159,6 +159,7 @@
 - [`14_CoinChange_ii.py`](./Algorithms/DynamicPlanning/14_CoinChange_ii.py) - 零钱兑换 II（LeetCode 518，完全背包求组合数）
 - [`15_CombinationSum_iv.py`](./Algorithms/DynamicPlanning/15_CombinationSum_iv.py) - 组合总和 IV（LeetCode 377，求排列数）
 - [`16_ClimbStairs.py`](./Algorithms/DynamicPlanning/16_ClimbStairs.py) - 爬楼梯扩展版（每次可爬至多 m 阶）
+- [`17_CoinChange.py`](./Algorithms/DynamicPlanning/17_CoinChange.py) - 零钱兑换（LeetCode 322，完全背包求最小值）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
