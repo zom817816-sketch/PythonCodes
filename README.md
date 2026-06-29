@@ -161,6 +161,7 @@
 - [`16_ClimbStairs.py`](./Algorithms/DynamicPlanning/16_ClimbStairs.py) - 爬楼梯扩展版（每次可爬至多 m 阶）
 - [`17_CoinChange.py`](./Algorithms/DynamicPlanning/17_CoinChange.py) - 零钱兑换（LeetCode 322，完全背包求最小值）
 - [`18_PerfectSquares.py`](./Algorithms/DynamicPlanning/18_PerfectSquares.py) - 完全平方数（LeetCode 279，含 Lagrange 四平方定理）
+- [`19_WorkBreak.py`](./Algorithms/DynamicPlanning/19_WorkBreak.py) - 单词拆分（LeetCode 139，布尔型 DP）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
