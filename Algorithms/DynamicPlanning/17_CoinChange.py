@@ -103,22 +103,22 @@ def coinChange_backtrack(coins: list[int], amount: int) -> int:
     对于 amount = 11, coins = [1, 2, 5]，递归树非常庞大，效率极低。
     仅用于理解问题本质。
     """
-    min_coins = float("inf")
+    min_coins = float("inf")  # 初始化最小硬币数为无穷大
 
     def backtrack(remaining: int, count: int) -> None:
-        nonlocal min_coins
-        if remaining == 0:
-            min_coins = min(min_coins, count)
+        nonlocal min_coins  # 使用外层函数的变量
+        if remaining == 0:   # 找到一个有效组合
+            min_coins = min(min_coins, count)  # 更新最小硬币数
             return
-        if remaining < 0:
+        if remaining < 0:    # 剩余金额为负，剪枝
             return
 
-        for coin in coins:
-            if remaining >= coin:
-                backtrack(remaining - coin, count + 1)
+        for coin in coins:   # 枚举每种硬币
+            if remaining >= coin:  # 当前硬币面额不超过剩余金额
+                backtrack(remaining - coin, count + 1)  # 使用该硬币，递归
 
-    backtrack(amount, 0)
-    return min_coins if min_coins != float("inf") else -1
+    backtrack(amount, 0)  # 从目标金额开始，初始硬币数为 0
+    return min_coins if min_coins != float("inf") else -1  # 返回结果，无法凑成返回 -1
 
 
 # ══════════════════════════════════════════════════════════
@@ -151,25 +151,25 @@ def coinChange_memo(coins: list[int], amount: int) -> int:
     初始条件：
     - remaining == 0 时返回 0（已经凑成目标金额）
     """
-    memo = {}
+    memo = {}  # 缓存：存储已计算的剩余金额的最小硬币数
 
     def dfs(remaining: int) -> int:
-        if remaining == 0:
+        if remaining == 0:          # 剩余金额为 0，已经凑成，返回 0
             return 0
-        if remaining in memo:
+        if remaining in memo:       # 如果已计算过，直接返回缓存值
             return memo[remaining]
 
-        min_count = float("inf")
-        for coin in coins:
-            if remaining >= coin:
-                res = dfs(remaining - coin)
-                if res != -1:
-                    min_count = min(min_count, res + 1)
+        min_count = float("inf")    # 初始化最小硬币数为无穷大
+        for coin in coins:          # 枚举每种硬币
+            if remaining >= coin:   # 当前硬币面额不超过剩余金额
+                res = dfs(remaining - coin)  # 递归计算剩余金额的最小硬币数
+                if res != -1:       # 如果剩余金额可以凑成
+                    min_count = min(min_count, res + 1)  # 更新最小硬币数
 
-        memo[remaining] = min_count if min_count != float("inf") else -1
-        return memo[remaining]
+        memo[remaining] = min_count if min_count != float("inf") else -1  # 缓存结果
+        return memo[remaining]  # 返回结果
 
-    return dfs(amount)
+    return dfs(amount)  # 从目标金额开始递归
 
 
 # ══════════════════════════════════════════════════════════
@@ -237,17 +237,19 @@ def coinChange_dp_v1(coins: list[int], amount: int) -> int:
     ────────────────────────────────────────────────────────
     coins.sort() + break：排序后，当 coin > i 时，后面的硬币都更大，无需继续尝试
     """
-    dp = [float("inf")] * (amount + 1)
-    dp[0] = 0
-    coins.sort()
+    dp = [float("inf")] * (amount + 1)  # 创建 DP 数组，初始化为无穷大
+    dp[0] = 0                           # 初始化：凑成金额 0 需要 0 枚硬币
+    coins.sort()                        # 排序硬币，便于剪枝优化
 
-    for i in range(1, amount + 1):
-        for coin in coins:
-            if coin <= i:
+    for i in range(1, amount + 1):      # 遍历每个金额（从 1 到 amount）
+        for coin in coins:              # 遍历每种硬币
+            if coin <= i:               # 如果当前硬币面额不超过金额 i
+                # 状态转移：凑成金额 i 的最少硬币数 = min(当前值, 凑成 i-coin 的最少硬币数 + 1)
                 dp[i] = min(dp[i], dp[i - coin] + 1)
             else:
-                break
+                break  # 硬币已排序，后面的硬币更大，无需继续尝试
 
+    # 返回结果：如果 dp[amount] 仍是无穷大，说明无法凑成，返回 -1
     return dp[amount] if dp[amount] != float("inf") else -1
 
 
@@ -292,13 +294,16 @@ def coinChange_dp_v2(coins: list[int], amount: int) -> int:
     当 i < coin 时，无法使用该硬币，直接跳过。
     这样可以避免无效的比较和索引越界。
     """
-    dp = [float("inf")] * (amount + 1)
-    dp[0] = 0
+    dp = [float("inf")] * (amount + 1)  # 创建 DP 数组，初始化为无穷大
+    dp[0] = 0                           # 初始化：凑成金额 0 需要 0 枚硬币
 
-    for coin in coins:
+    for coin in coins:                  # 遍历每种硬币
+        # 内层循环从 coin 开始：当 i < coin 时无法使用该硬币
         for i in range(coin, amount + 1):
+            # 状态转移：使用当前硬币更新 dp[i]
             dp[i] = min(dp[i], dp[i - coin] + 1)
 
+    # 返回结果：如果 dp[amount] 仍是无穷大，说明无法凑成，返回 -1
     return dp[amount] if dp[amount] != float("inf") else -1
 
 
@@ -351,28 +356,29 @@ def coinChange_bfs(coins: list[int], amount: int) -> int:
     当目标金额较大但最短路径较短时，BFS 效率高于 DP。
     例如 amount = 10000，但最优解只需要 2 枚硬币（如 [5000, 1]）。
     """
-    if amount == 0:
+    if amount == 0:                    # 特殊情况：金额为 0，直接返回 0
         return 0
 
-    from collections import deque
+    from collections import deque      # 导入队列
 
-    visited = [False] * (amount + 1)
-    queue = deque()
-    queue.append((amount, 0))
-    visited[amount] = True
+    visited = [False] * (amount + 1)  # 访问标记数组，避免重复访问
+    queue = deque()                   # 创建队列，存储 (当前金额, 当前步数)
+    queue.append((amount, 0))         # 初始状态：目标金额，步数为 0
+    visited[amount] = True            # 标记初始金额已访问
 
-    while queue:
-        current_amount, steps = queue.popleft()
+    while queue:                      # BFS 循环
+        current_amount, steps = queue.popleft()  # 出队：获取当前金额和步数
 
-        for coin in coins:
-            next_amount = current_amount - coin
-            if next_amount == 0:
+        for coin in coins:            # 尝试使用每种硬币
+            next_amount = current_amount - coin  # 减去硬币后的金额
+            if next_amount == 0:      # 到达目标（金额为 0），返回步数+1
                 return steps + 1
+            # 如果金额大于 0 且未被访问过
             if next_amount > 0 and not visited[next_amount]:
-                visited[next_amount] = True
-                queue.append((next_amount, steps + 1))
+                visited[next_amount] = True       # 标记已访问
+                queue.append((next_amount, steps + 1))  # 入队
 
-    return -1
+    return -1  # 无法凑成目标金额
 
 
 # ══════════════════════════════════════════════════════════
