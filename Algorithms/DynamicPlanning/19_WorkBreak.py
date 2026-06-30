@@ -101,18 +101,18 @@ def wordBreak_backtrack(s: str, wordDict: list[str]) -> bool:
     仅用于理解问题本质。
     """
     def backtrack(current: str) -> bool:
-        if current == s:
+        if current == s:                 # 当前拼接的字符串等于目标字符串，返回 True
             return True
-        if not s.startswith(current):
+        if not s.startswith(current):    # 当前字符串不是目标字符串的前缀，剪枝
             return False
 
-        for word in wordDict:
-            if backtrack(current + word):
+        for word in wordDict:            # 枚举字典中的每个单词
+            if backtrack(current + word):  # 尝试拼接当前单词，递归
                 return True
 
-        return False
+        return False                     # 所有单词都尝试过，无法拼接
 
-    return backtrack("")
+    return backtrack("")                # 从空字符串开始回溯
 
 
 # ══════════════════════════════════════════════════════════
@@ -145,25 +145,26 @@ def wordBreak_memo(s: str, wordDict: list[str]) -> bool:
     初始条件：
     - i == len(s) 时返回 True（空字符串可以被拆分）
     """
-    memo = {}
+    memo = {}  # 缓存：存储从位置 i 开始的子串是否可以拆分
 
     def dfs(start: int) -> bool:
-        if start == len(s):
+        if start == len(s):  # 到达字符串末尾，说明可以拆分，返回 True
             return True
-        if start in memo:
+        if start in memo:    # 如果已计算过，直接返回缓存值
             return memo[start]
 
-        for word in wordDict:
-            word_len = len(word)
+        for word in wordDict:            # 枚举字典中的每个单词
+            word_len = len(word)         # 获取单词长度
+            # 如果单词能匹配从 start 开始的子串
             if start + word_len <= len(s) and s[start:start + word_len] == word:
-                if dfs(start + word_len):
-                    memo[start] = True
+                if dfs(start + word_len):  # 递归检查剩余子串是否可以拆分
+                    memo[start] = True     # 缓存结果：可以拆分
                     return True
 
-        memo[start] = False
+        memo[start] = False  # 所有单词都无法匹配，缓存结果：不可拆分
         return False
 
-    return dfs(0)
+    return dfs(0)  # 从位置 0 开始递归
 
 
 # ══════════════════════════════════════════════════════════
@@ -220,18 +221,19 @@ def wordBreak_dp_v1(s: str, wordDict: list[str]) -> bool:
     最终答案：
     - dp[n]（n = len(s)）
     """
-    n = len(s)
-    dp = [False] * (n + 1)
-    dp[0] = True
-    word_set = set(wordDict)
+    n = len(s)                        # 获取字符串长度
+    dp = [False] * (n + 1)            # 创建 DP 数组，初始化为 False
+    dp[0] = True                      # 初始化：空字符串可以被拆分
+    word_set = set(wordDict)          # 将字典转换为集合，加速查找
 
-    for i in range(1, n + 1):
-        for j in range(i):
+    for i in range(1, n + 1):         # 遍历每个位置 i（从 1 到 n）
+        for j in range(i):            # 遍历每个可能的分割点 j（从 0 到 i-1）
+            # 如果前 j 个字符可以拆分，且 s[j:i] 在字典中
             if dp[j] and s[j:i] in word_set:
-                dp[i] = True
-                break
+                dp[i] = True          # 则前 i 个字符也可以拆分
+                break                 # 找到一个匹配后立即跳出内层循环
 
-    return dp[n]
+    return dp[n]  # 返回整个字符串是否可以被拆分
 
 
 # ══════════════════════════════════════════════════════════
@@ -275,18 +277,19 @@ def wordBreak_dp_v2(s: str, wordDict: list[str]) -> bool:
 
     当字典中单词数量较少时，写法二更高效。
     """
-    n = len(s)
-    dp = [False] * (n + 1)
-    dp[0] = True
+    n = len(s)                        # 获取字符串长度
+    dp = [False] * (n + 1)            # 创建 DP 数组，初始化为 False
+    dp[0] = True                      # 初始化：空字符串可以被拆分
 
-    for i in range(n):
-        if dp[i]:
-            for word in wordDict:
-                word_len = len(word)
+    for i in range(n):                # 遍历每个位置 i（从 0 到 n-1）
+        if dp[i]:                     # 如果位置 i 可达（前 i 个字符可以拆分）
+            for word in wordDict:     # 尝试用字典中的每个单词向后扩展
+                word_len = len(word)  # 获取单词长度
+                # 如果单词能匹配从位置 i 开始的子串
                 if i + word_len <= n and s[i:i + word_len] == word:
-                    dp[i + word_len] = True
+                    dp[i + word_len] = True  # 标记新位置可达
 
-    return dp[n]
+    return dp[n]  # 返回整个字符串是否可以被拆分
 
 
 # ══════════════════════════════════════════════════════════
@@ -333,26 +336,28 @@ def wordBreak_bfs(s: str, wordDict: list[str]) -> bool:
     ────────────────────────────────────────────────────────
     当最短路径较短时，BFS 效率高于 DP。
     """
-    n = len(s)
-    visited = [False] * n
-    queue = []
-    queue.append(0)
-    visited[0] = True
+    n = len(s)                         # 获取字符串长度
+    visited = [False] * n              # 访问标记数组，避免重复访问
+    queue = []                         # 创建队列，存储待处理的位置
+    queue.append(0)                    # 初始状态：从位置 0 开始
+    visited[0] = True                  # 标记位置 0 已访问
 
-    while queue:
-        current = queue.pop(0)
+    while queue:                       # BFS 循环
+        current = queue.pop(0)         # 出队：获取当前位置
 
-        for word in wordDict:
-            word_len = len(word)
-            next_pos = current + word_len
+        for word in wordDict:          # 尝试用字典中的每个单词
+            word_len = len(word)       # 获取单词长度
+            next_pos = current + word_len  # 计算使用该单词后到达的位置
 
+            # 如果到达字符串末尾且单词匹配
             if next_pos == n and s[current:next_pos] == word:
                 return True
+            # 如果位置有效、未被访问且单词匹配
             if next_pos < n and not visited[next_pos] and s[current:next_pos] == word:
-                visited[next_pos] = True
-                queue.append(next_pos)
+                visited[next_pos] = True  # 标记已访问
+                queue.append(next_pos)    # 入队
 
-    return False
+    return False  # 无法到达位置 n，返回 False
 
 
 # ══════════════════════════════════════════════════════════
