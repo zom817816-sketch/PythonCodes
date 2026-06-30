@@ -100,24 +100,24 @@ def numSquares_backtrack(n: int) -> int:
     对于 n = 12, squares = [1, 4, 9]，递归树非常庞大，效率极低。
     仅用于理解问题本质。
     """
-    m = int(n ** 0.5)
-    squares = [i ** 2 for i in range(1, m + 1)]
-    min_count = float("inf")
+    m = int(n ** 0.5)                    # 计算最大整数 m，使得 m² <= n
+    squares = [i ** 2 for i in range(1, m + 1)]  # 生成所有 <= n 的完全平方数
+    min_count = float("inf")             # 初始化最小个数为无穷大
 
     def backtrack(remaining: int, count: int) -> None:
-        nonlocal min_count
-        if remaining == 0:
-            min_count = min(min_count, count)
+        nonlocal min_count               # 使用外层函数的变量
+        if remaining == 0:               # 找到一个有效组合
+            min_count = min(min_count, count)  # 更新最小个数
             return
-        if remaining < 0:
+        if remaining < 0:                # 剩余值为负，剪枝
             return
 
-        for s in squares:
-            if remaining >= s:
-                backtrack(remaining - s, count + 1)
+        for s in squares:                # 枚举每种完全平方数
+            if remaining >= s:           # 当前平方数不超过剩余值
+                backtrack(remaining - s, count + 1)  # 使用该平方数，递归
 
-    backtrack(n, 0)
-    return min_count
+    backtrack(n, 0)  # 从目标值 n 开始，初始个数为 0
+    return min_count  # 返回最小个数
 
 
 # ══════════════════════════════════════════════════════════
@@ -151,27 +151,27 @@ def numSquares_memo(n: int) -> int:
     初始条件：
     - remaining == 0 时返回 0（已经凑成目标值）
     """
-    m = int(n ** 0.5)
-    squares = [i ** 2 for i in range(1, m + 1)]
-    memo = {}
+    m = int(n ** 0.5)                    # 计算最大整数 m，使得 m² <= n
+    squares = [i ** 2 for i in range(1, m + 1)]  # 生成所有 <= n 的完全平方数
+    memo = {}                            # 缓存：存储已计算的剩余值的最小个数
 
     def dfs(remaining: int) -> int:
-        if remaining == 0:
+        if remaining == 0:               # 剩余值为 0，已经凑成，返回 0
             return 0
-        if remaining in memo:
+        if remaining in memo:            # 如果已计算过，直接返回缓存值
             return memo[remaining]
 
-        min_count = float("inf")
-        for s in squares:
-            if remaining >= s:
-                res = dfs(remaining - s)
-                if res != -1:
-                    min_count = min(min_count, res + 1)
+        min_count = float("inf")         # 初始化最小个数为无穷大
+        for s in squares:                # 枚举每种完全平方数
+            if remaining >= s:           # 当前平方数不超过剩余值
+                res = dfs(remaining - s) # 递归计算剩余值的最小个数
+                if res != -1:            # 如果剩余值可以凑成
+                    min_count = min(min_count, res + 1)  # 更新最小个数
 
-        memo[remaining] = min_count if min_count != float("inf") else -1
-        return memo[remaining]
+        memo[remaining] = min_count if min_count != float("inf") else -1  # 缓存结果
+        return memo[remaining]  # 返回结果
 
-    return dfs(n)
+    return dfs(n)  # 从目标值 n 开始递归
 
 
 # ══════════════════════════════════════════════════════════
@@ -241,19 +241,20 @@ def numSquares_dp_v1(n: int) -> int:
     最终答案：
     - dp[n]
     """
-    m = int(n ** 0.5)
-    squares = [i ** 2 for i in range(1, m + 1)]
-    dp = [n] * (n + 1)
-    dp[0] = 0
+    m = int(n ** 0.5)                    # 计算最大整数 m，使得 m² <= n
+    squares = [i ** 2 for i in range(1, m + 1)]  # 生成所有 <= n 的完全平方数
+    dp = [n] * (n + 1)                  # 创建 DP 数组，初始化为 n（最多用 n 个 1）
+    dp[0] = 0                           # 初始化：和为 0 需要 0 个完全平方数
 
-    for i in range(1, n + 1):
-        for s in squares:
-            if s <= i:
+    for i in range(1, n + 1):           # 遍历每个数值（从 1 到 n）
+        for s in squares:               # 遍历每种完全平方数
+            if s <= i:                  # 如果当前平方数不超过数值 i
+                # 状态转移：和为 i 的最少平方数 = min(当前值, 和为 i-s 的最少平方数 + 1)
                 dp[i] = min(dp[i], dp[i - s] + 1)
             else:
-                break
+                break  # 平方数已排序，后面的更大，无需继续尝试
 
-    return dp[n]
+    return dp[n]  # 返回和为 n 的最少平方数个数
 
 
 # ══════════════════════════════════════════════════════════
@@ -298,16 +299,18 @@ def numSquares_dp_v2(n: int) -> int:
     当 i < s 时，无法使用该平方数，直接跳过。
     这样可以避免无效的比较和索引越界。
     """
-    m = int(n ** 0.5)
-    squares = [i ** 2 for i in range(1, m + 1)]
-    dp = [n] * (n + 1)
-    dp[0] = 0
+    m = int(n ** 0.5)                    # 计算最大整数 m，使得 m² <= n
+    squares = [i ** 2 for i in range(1, m + 1)]  # 生成所有 <= n 的完全平方数
+    dp = [n] * (n + 1)                  # 创建 DP 数组，初始化为 n（最多用 n 个 1）
+    dp[0] = 0                           # 初始化：和为 0 需要 0 个完全平方数
 
-    for s in squares:
+    for s in squares:                   # 遍历每种完全平方数
+        # 内层循环从 s 开始：当 i < s 时无法使用该平方数
         for i in range(s, n + 1):
+            # 状态转移：使用当前平方数更新 dp[i]
             dp[i] = min(dp[i], dp[i - s] + 1)
 
-    return dp[n]
+    return dp[n]  # 返回和为 n 的最少平方数个数
 
 
 # ══════════════════════════════════════════════════════════
@@ -360,31 +363,32 @@ def numSquares_bfs(n: int) -> int:
     ────────────────────────────────────────────────────────
     当目标值较大但最短路径较短时，BFS 效率高于 DP。
     """
-    if n == 0:
+    if n == 0:                          # 特殊情况：n 为 0，直接返回 0
         return 0
 
-    from collections import deque
+    from collections import deque       # 导入队列
 
-    m = int(n ** 0.5)
-    squares = [i ** 2 for i in range(1, m + 1)]
+    m = int(n ** 0.5)                   # 计算最大整数 m，使得 m² <= n
+    squares = [i ** 2 for i in range(1, m + 1)]  # 生成所有 <= n 的完全平方数
 
-    visited = [False] * (n + 1)
-    queue = deque()
-    queue.append((n, 0))
-    visited[n] = True
+    visited = [False] * (n + 1)         # 访问标记数组，避免重复访问
+    queue = deque()                     # 创建队列，存储 (当前数值, 当前步数)
+    queue.append((n, 0))                # 初始状态：目标数值 n，步数为 0
+    visited[n] = True                   # 标记初始数值已访问
 
-    while queue:
-        current, steps = queue.popleft()
+    while queue:                        # BFS 循环
+        current, steps = queue.popleft()  # 出队：获取当前数值和步数
 
-        for s in squares:
-            next_val = current - s
-            if next_val == 0:
+        for s in squares:               # 尝试使用每种完全平方数
+            next_val = current - s      # 减去平方数后的数值
+            if next_val == 0:           # 到达目标（数值为 0），返回步数+1
                 return steps + 1
+            # 如果数值大于 0 且未被访问过
             if next_val > 0 and not visited[next_val]:
-                visited[next_val] = True
-                queue.append((next_val, steps + 1))
+                visited[next_val] = True        # 标记已访问
+                queue.append((next_val, steps + 1))  # 入队
 
-    return -1
+    return -1  # 理论上不会执行到这里，因为 Lagrange 定理保证答案存在
 
 
 # ══════════════════════════════════════════════════════════
@@ -428,22 +432,25 @@ def numSquares_math(n: int) -> int:
     ④ 否则，根据 Lagrange 定理，答案只能是 3
     """
     def is_square(x: int) -> bool:
-        s = int(x ** 0.5)
-        return s * s == x
+        """判断 x 是否为完全平方数"""
+        s = int(x ** 0.5)  # 取 x 的平方根的整数部分
+        return s * s == x  # 如果整数部分的平方等于 x，则是完全平方数
 
-    if is_square(n):
+    if is_square(n):       # ① 判断 n 是否为完全平方数
         return 1
 
-    temp = n
-    while temp % 4 == 0:
+    temp = n               # ② 判断 n 是否满足 n = 4^a(8b+7)
+    while temp % 4 == 0:   # 不断除以 4，直到无法整除
         temp //= 4
-    if temp % 8 == 7:
+    if temp % 8 == 7:      # 如果结果模 8 等于 7，返回 4
         return 4
 
+    # ③ 判断 n 是否可以表示为两个完全平方数之和
     for i in range(1, int(n ** 0.5) + 1):
-        if is_square(n - i * i):
+        if is_square(n - i * i):  # 如果 n - i² 也是完全平方数，则 n = i² + (√(n-i²))²
             return 2
 
+    # ④ 否则返回 3（根据 Lagrange 定理，最多需要 4 个，排除其他情况后只能是 3）
     return 3
 
 
