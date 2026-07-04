@@ -308,10 +308,12 @@ def maxProfit(prices: list[int]) -> int:
 
     buy1 = -prices[0]
     sell1 = 0
-    buy2 = -prices[0]
+    buy2 = -prices[0] # 最反直觉。它等价于：第1天买入（-prices[0]），立刻卖出（利润0），再买入（-prices[0]）
     sell2 = 0
 
     for price in prices[1:]:
+        # 每一步读取的依赖都还是"昨天的值"，因为被依赖的状态还没被更新
+        # sell2 依赖 buy2，所以 buy2 比 sell2 晚更新；buy2 依赖 sell1，所以 sell1 比 buy2 晚更新……最终就是逆序
         # 第2次卖出：保持 或 今天卖出
         sell2 = max(sell2, buy2 + price)
         # 第2次买入：保持 或 今天买入（用第1笔利润）
