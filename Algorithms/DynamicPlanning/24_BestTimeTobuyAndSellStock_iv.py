@@ -189,83 +189,13 @@ def maxProfit_dp(k: int, prices: list[int]) -> int:
         return maxProfit_greedy(prices)
 
     # buy[j] = 第 j 次买入后的最大利润，sell[j] = 第 j 次卖出后的最大利润
-    buy = [0] * (k + 1)
+    buy = [-prices[0]] * (k + 1)
     sell = [0] * (k + 1)
-
-    for j in range(1, k + 1):
-        buy[j] = -prices[0]
 
     for i in range(1, n):
         for j in range(k, 0, -1):
             sell[j] = max(sell[j], buy[j] + prices[i])
             buy[j] = max(buy[j], sell[j - 1] - prices[i])
-
-    return sell[k]
-
-
-# ══════════════════════════════════════════════════════════
-# 解法三：动态规划（滚动数组优化）
-# ══════════════════════════════════════════════════════════
-
-
-def maxProfit(k: int, prices: list[int]) -> int:
-    """
-    动态规划解法（滚动数组优化）⭐⭐⭐⭐ 推荐
-
-    核心思想：
-    ────────────────────────────────────────────────────────
-    与股票 III 的滚动变量优化同理：
-    buy[j] 和 sell[j] 只依赖前一天的值，
-    因此用 1D 数组即可，通过逆序遍历 j 保证使用"旧值"。
-
-    为什么内层循环要逆序遍历 j？
-    ────────────────────────────────────────────────────────
-    以 k=2 为例，如果正序遍历 j=1,2：
-        buy[1] = max(buy[1], sell[0] - price)    ← sell[0] 恒为0，OK
-        sell[1] = max(sell[1], buy[1] + price)   ← 用了更新后的 buy[1]！❌
-        buy[2] = max(buy[2], sell[1] - price)    ← 用了更新后的 sell[1]！❌
-        sell[2] = max(sell[2], buy[2] + price)   ← 用了更新后的 buy[2]！❌
-
-    逆序遍历 j=2,1：
-        sell[2] = max(sell[2], buy[2] + price)   ← 用旧 buy[2] ✓
-        buy[2]  = max(buy[2], sell[1] - price)   ← 用旧 sell[1] ✓
-        sell[1] = max(sell[1], buy[1] + price)   ← 用旧 buy[1] ✓
-        buy[1]  = max(buy[1], sell[0] - price)   ← sell[0]恒为0 ✓
-
-    这与股票 III 中逆序更新 sell2→buy2→sell1→buy1 完全一致，
-    只是推广到了任意的 k。
-
-    时间复杂度：O(n×k) — 外层遍历天数，内层遍历交易次数
-    空间复杂度：O(k)   — 两个长度为 k+1 的数组
-
-    状态定义：
-        buy[j]  = 当前处于"第 j 次买入"状态的最大利润
-        sell[j] = 当前处于"第 j 次卖出"状态的最大利润
-        sell[0] = 0（未进行任何交易，恒为0）
-
-    初始条件：
-        buy[j]  = -prices[0]  对所有 j ∈ [1, k]
-        sell[j] = 0           对所有 j ∈ [0, k]
-
-    最终答案：
-        sell[k]（最多 k 笔交易后的最大利润）
-    """
-    n = len(prices)
-    if n < 2 or k == 0:
-        return 0
-
-    # 关键优化：k ≥ n/2 时退化为无限次交易
-    if k >= n // 2:
-        return maxProfit_greedy(prices)
-
-    buy = [-prices[0]] * (k + 1)
-    sell = [0] * (k + 1)
-
-    for price in prices[1:]:
-        for j in range(k, 0, -1):
-            # 先卖后买，逆序保证使用旧值
-            sell[j] = max(sell[j], buy[j] + price)
-            buy[j] = max(buy[j], sell[j - 1] - price)
 
     return sell[k]
 
