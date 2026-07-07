@@ -212,12 +212,22 @@ def maxProfit_memo(prices: list[int]) -> int:
 
         if state == 0:
             # 持有：继续持有 或 卖出
+            # dfs(day+1, 0)：继续持有，今天无操作，利润来自明天起
+            # price + dfs(day+1, 2)：今天卖出，立刻到手 price，
+            #   然后从明天起进入冷冻期(state=2)，dfs(day+1,2)是明天的【未来总利润】
+            # 注意：price 是今天的收入，dfs(day+1,2) 是未来的收入，两者相加才是总利润
+            #   dfs(day+1,2) 不是"冷冻期当天的利润"（那天利润增量为0），
+            #   而是"从冷冻期开始，往后所有天的利润"
             res = max(dfs(day + 1, 0), price + dfs(day + 1, 2))
         elif state == 1:
             # 非冷冻不持有：不操作 或 买入
+            # dfs(day+1, 1)：今天不操作，明天仍非冷冻
+            # -price + dfs(day+1, 0)：今天买入，花费 price，明天持有
             res = max(dfs(day + 1, 1), -price + dfs(day + 1, 0))
         else:
             # 冷冻期：只能等待，明天变非冷冻
+            # 冷冻期当天不能做任何操作，利润增量为0，
+            # 但冷冻期结束后可能还有交易机会，所以递归到 dfs(day+1, 1)
             res = dfs(day + 1, 1)
 
         memo[(day, state)] = res
