@@ -160,13 +160,20 @@ def lengthOfLIS_dp(nums: list[int]) -> int:
     if n == 0:
         return 0
 
+    # dp[i] = 以 nums[i] 结尾的最长递增子序列长度
+    # 初始值全为1：每个元素自身构成长度为1的子序列
     dp = [1] * n
 
     for i in range(1, n):
         for j in range(i):
+            # 只有 nums[j] < nums[i] 时，nums[i] 才能接在以 nums[j] 结尾的子序列后面
+            # 严格递增：不能取等号（nums[j] == nums[i] 时不构成递增）
             if nums[j] < nums[i]:
+                # dp[j]+1：把 nums[i] 接在以 nums[j] 结尾的 LIS 后面
+                # 取 max：可能有多个 j 满足条件，选最长的那个
                 dp[i] = max(dp[i], dp[j] + 1)
 
+    # LIS 不一定以最后一个元素结尾，必须取全局最大值
     return max(dp)
 
 
@@ -221,15 +228,26 @@ def lengthOfLIS(nums: list[int]) -> int:
     """
     import bisect
 
+    # tails[k] = 长度为 k+1 的递增子序列的末尾最小值
+    # tails 始终严格递增（由 bisect_left 保证）
     tails = []
 
     for x in nums:
+        # bisect_left：在 tails 中找第一个 ≥ x 的位置
+        # 严格递增用 bisect_left；非严格递增（允许相等）用 bisect_right
         pos = bisect.bisect_left(tails, x)
+
         if pos == len(tails):
+            # x 比所有 tails 元素都大，可以接在最长子序列后面
+            # LIS 长度 +1
             tails.append(x)
         else:
+            # x ≤ tails[pos]，替换 tails[pos] 为 x
+            # 不改变 tails 长度，但让末尾更小，为后续创造更多拼接机会
             tails[pos] = x
 
+    # tails 的长度就是 LIS 的长度
+    # 注意：tails 本身不一定是合法的 LIS（内容可能不对应原序列的子序列），但长度正确
     return len(tails)
 
 
