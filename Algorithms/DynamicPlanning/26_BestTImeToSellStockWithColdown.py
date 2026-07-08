@@ -273,7 +273,7 @@ def maxProfit_dp(prices: list[int]) -> int:
 
     i=2, price=3:
         hold = max(-1, 0-3)  = -1     保持持有
-        sell = -1+3          = 2      危出！利润2
+        sell = -1+3          = 2      卖出！利润2
         rest = max(0, 1)     = 1      冷冻期结束
 
     i=3, price=0:
@@ -283,7 +283,7 @@ def maxProfit_dp(prices: list[int]) -> int:
 
     i=4, price=2:
         hold = max(1, 2-2)   = 1      保持持有
-        sell = 1+2           = 3      危出！利润3
+        sell = 1+2           = 3      卖出！利润3
         rest = max(2, -1)    = 2      保持
 
     结果：max(sell[4], rest[4]) = max(3, 2) = 3 ✓
@@ -364,7 +364,7 @@ def maxProfit(prices: list[int]) -> int:
 
         # 持有：保持持有 / 从非冷冻买入
         hold = max(hold, rest - price)
-        # 危出：从持有卖出
+        # 卖出：从持有卖出
         sell = prev_hold + price
         # 非冷冻：保持非冷冻 / 冷冻期结束
         rest = max(rest, prev_sell)
