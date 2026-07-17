@@ -163,12 +163,14 @@
 - [`18_PerfectSquares.py`](./Algorithms/DynamicPlanning/18_PerfectSquares.py) - 完全平方数（LeetCode 279，含 Lagrange 四平方定理）
 - [`19_WorkBreak.py`](./Algorithms/DynamicPlanning/19_WorkBreak.py) - 单词拆分（LeetCode 139，布尔型 DP）
 - [`22_HouseRobber_iii.py`](./Algorithms/DynamicPlanning/22_HouseRobber_iii.py) - 打家劫舍 III（LeetCode 337，树形 DP）
-- [`23_BestTimeToBuyAndSellStock_iii.py`](./Algorithms/DynamicPlanning/23_BestTimeToBuyAndSellStock_iii.py) - 买卖股票的最佳时机 III（LeetCode 123，最多两笔交易，三种解法）
+- [`23_BestTimeToBuyAndSellStock.py`](./Algorithms/DynamicPlanning/23_BestTimeToBuyAndSellStock.py) - 买卖股票的最佳时机 III（LeetCode 123，最多两笔交易，三种解法）
 - [`24_BestTimeTobuyAndSellStock_iv.py`](./Algorithms/DynamicPlanning/24_BestTimeTobuyAndSellStock_iv.py) - 买卖股票的最佳时机 IV（LeetCode 188，最多 k 笔交易，三种解法）
 - [`25_BestTimeTobuyAndSellStockWithTransactionFee.py`](./Algorithms/DynamicPlanning/25_BestTimeTobuyAndSellStockWithTransactionFee.py) - 买卖股票的最佳时机含手续费（LeetCode 714）
 - [`26_BestTImeToSellStockWithColdown.py`](./Algorithms/DynamicPlanning/26_BestTImeToSellStockWithColdown.py) - 买卖股票的最佳时机含冷冻期（LeetCode 309）
 - [`27_LongestIncreasingSubsequence.py`](./Algorithms/DynamicPlanning/27_LongestIncreasingSubsequence.py) - 最长递增子序列（LeetCode 300）
 - [`28_LongestContinuousIncreasingSubsequence.py`](./Algorithms/DynamicPlanning/28_LongestContinuousIncreasingSubsequence.py) - 最长连续递增子序列（LeetCode 674）
+- [`29_MaxRepeatedSubarr.py`](./Algorithms/DynamicPlanning/29_MaxRepeatedSubarr.py) - 最长重复子数组（LeetCode 718）
+- [`30_UncrossedLines.py`](./Algorithms/DynamicPlanning/30_UncrossedLines.py) - 不相交的线（LeetCode 1035，等价于最长公共子序列）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
