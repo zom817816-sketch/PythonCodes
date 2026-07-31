@@ -1,42 +1,113 @@
 """
-给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+# 1. 两数之和（Two Sum）
 
-你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
+## 题目描述
 
-示例:
+给定一个整数数组 `nums` 和一个整数目标值 `target`，请在数组中找出和为
+`target` 的两个整数，并返回它们的数组下标。
 
-给定 nums = [2, 7, 11, 15], target = 9
+要求：
 
-因为 nums[0] + nums[1] = 2 + 7 = 9
+- 每种输入只对应一个答案；
+- 同一个元素不能使用两遍；
+- 返回的两个下标可以按发现顺序返回；
+- 如果没有找到答案，返回空列表（便于在独立代码中表示“无解”）。
 
-所以返回 [0, 1]
-""" 
+示例：
+
+    nums = [2, 7, 11, 15], target = 9
+    nums[0] + nums[1] = 2 + 7 = 9
+    返回 [0, 1]
+
+题目链接：https://leetcode.cn/problems/two-sum/
+
+## 解法总览
+
+### 解法一：哈希表（推荐）
+
+遍历到 `nums[i]` 时，另一个数必须是：
+
+    complement = target - nums[i]
+
+用字典保存已经遍历过的数字及其下标：
+
+    已遍历数字 -> 下标
+
+如果 `complement` 已经在字典中，就可以立即返回它的下标和当前下标。
+检查必须放在保存当前数字之前，这样同一个元素不会被使用两遍。
+
+示例过程：
+
+    i=0, num=2, complement=7：7 不在表中，记录 2 -> 0
+    i=1, num=7, complement=2：2 在表中，返回 [0, 1]
+
+### 解法二：暴力枚举
+
+枚举所有满足 `i < j` 的下标对，直接判断 `nums[i] + nums[j] == target`。
+`i < j` 同时避免了重复检查和同一个元素被使用两遍。
+
+哈希表解法以额外空间换取线性时间，是本题更常用的解法；暴力解法更容易理解，
+适合作为基础解法或空间受限时的参考。
+"""
+
 
 def sum_two_1(nums: list[int], target: int) -> list[int]:
+    """使用哈希表在线性时间内寻找两数之和。
+
+    对当前数字 `num`，先查找它的补数 `target - num` 是否已经出现；查找失败后
+    再把当前数字和下标存入字典。先查后存可以正确处理 `[3, 3]`、`target=6`
+    这类需要使用两个相同数但不能重复使用同一个下标的情况。
+
+    时间复杂度：平均 `O(n)`，字典查找和插入的平均复杂度为 `O(1)`。
+    空间复杂度：`O(n)`，最坏情况下需要保存 `n` 个数字及其下标。
     """
-    给定一个整数数组 nums 和一个目标值 target，返回数组中两个和为target的数的下标。
-    时间复杂度: O(n) 空间复杂度: O(n)
-    """
-    seen = {} 
-    for i, num in enumerate(nums): 
-        if target - num in seen: 
-            return [seen[target - num], i] 
-        seen[num] = i 
-    return [] 
+
+    seen: dict[int, int] = {}
+    for index, num in enumerate(nums):
+        complement = target - num
+
+        # 字典中的数字来自更早的下标，因此当前元素不会被重复使用。
+        if complement in seen:
+            return [seen[complement], index]
+
+        # 查找失败后再记录当前元素，保证当前下标只作为后续配对使用。
+        seen[num] = index
+
+    return []
+
 
 def sum_two_2(nums: list[int], target: int) -> list[int]:
-    """
-    给定一个整数数组 nums 和一个目标值 target，返回数组中两个和为target的数的下标。
-    时间复杂度: O(n^2) 空间复杂度: O(1)
-    """ 
-    for i in range(len(nums)): 
-        for j in range(i + 1, len(nums)): 
-            if nums[i] + nums[j] == target: 
-                return [i, j] 
-    return [] 
+    """使用双重循环暴力枚举所有下标对。
 
-if __name__ == "__main__": 
-    nums = [2, 7, 11, 15]
-    target = 9
-    print(sum_two_1(nums, target))
-    print(sum_two_2(nums, target))
+    外层循环固定第一个下标 `i`，内层循环从 `i + 1` 开始寻找第二个下标 `j`，
+    因此始终满足 `i < j`，不会使用同一个数组元素两次。
+
+    时间复杂度：`O(n²)`，最多检查约 `n * (n - 1) / 2` 个下标对。
+    空间复杂度：`O(1)`，除返回值外不使用额外的数据结构。
+    """
+
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+
+    return []
+
+
+# 正确性证明
+#
+# 对哈希表解法，处理下标 i 时，seen 中恰好保存了所有下标小于 i 的元素及其下标。
+# 若 complement = target - nums[i] 在 seen 中，则 nums[seen[complement]] + nums[i]
+# 等于 target，返回值正确；由于已保存的下标都小于 i，两个下标不同。
+# 若 complement 不在 seen 中，当前元素不可能与任何更早元素组成目标和，记录它不会遗漏
+# 之后的答案。因此遍历结束时若返回空列表，则数组中不存在满足条件的下标对。
+#
+# 对暴力解法，两个循环枚举了所有满足 0 <= i < j < len(nums) 的下标对，没有遗漏任何
+# 合法答案，也不会检查 i == j 的非法情况。发现和为 target 的下标对时立即返回，因此返回值正确；
+# 遍历结束仍无返回值则说明不存在答案。
+#
+# 易错点：
+# 1. 哈希表中应保存“数字 -> 下标”，而不是只保存数字，否则无法返回下标。
+# 2. 必须先查找补数，再保存当前数字，避免同一个元素被使用两遍。
+# 3. 暴力枚举的内层循环应从 `i + 1` 开始，不能从 `0` 或 `i` 开始。
+# 4. 不要为了使用双指针而直接排序原数组；排序会丢失原始下标，除非额外保存下标信息。
