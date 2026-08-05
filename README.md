@@ -177,6 +177,8 @@
 - [`32_IsSubsequence.py`](./Algorithms/DynamicPlanning/32_IsSubsequence.py) - 判断子序列（LeetCode 392，双指针/DP/二分查找四种解法）
 - [`33_DistinctSubsequences.py`](./Algorithms/DynamicPlanning/33_DistinctSubsequences.py) - 不同的子序列（LeetCode 115，字符串匹配型 DP）
 - [`34_DeleteOperationForTwoStrings.py`](./Algorithms/DynamicPlanning/34_DeleteOperationForTwoStrings.py) - 两个字符串的删除操作（LeetCode 583，回溯/记忆化/DP 五种解法）
+- [`35_EditDistance.py`](./Algorithms/DynamicPlanning/35_EditDistance.py) - 编辑距离（LeetCode 72，插入/删除/替换三种操作）
+- [`36_Palindromic-Substrings.py`](./Algorithms/DynamicPlanning/36_Palindromic-Substrings.py) - 回文子串（LeetCode 647，区间 DP/中心扩展/暴力三种解法）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
