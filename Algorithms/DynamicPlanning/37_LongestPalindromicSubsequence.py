@@ -352,6 +352,7 @@ def longestPalindromeSubseq_lcs(s: str) -> int:
 
     for i in range(1, n + 1):
         # prev = dp[i-1][j-1]，即上一轮、前一列的值
+        # prev = 0 是在模拟二维矩阵中第一列的边界条件 ——空串和任何串的 LCS 长度都是 0
         prev = 0
         for j in range(1, n + 1):
             # 保存更新前的 dp[j]（上一轮的 dp[i-1][j]），
@@ -359,6 +360,7 @@ def longestPalindromeSubseq_lcs(s: str) -> int:
             temp = dp[j]
             if s[i - 1] == t[j - 1]:
                 # 字符匹配：dp[i][j] = dp[i-1][j-1] + 1
+                # +1的含义： 在两个独立字符串的公共子序列中，又多匹配上了一个字符
                 dp[j] = prev + 1
             else:
                 # 不匹配：dp[i][j] = max(dp[i-1][j], dp[i][j-1])
