@@ -58,6 +58,11 @@
 - [`06_SlidingWindowMax.py`](./Algorithms/Stack/06_SlidingWindowMax.py) - 滑动窗口最大值（单调队列）
 - [`07_TopKFrequent.py`](./Algorithms/Stack/07_TopKFrequent.py) - 前K个高频元素（堆/桶排序）
 
+#### MonotonicStack
+单调栈相关算法实现
+- [`01_DailyTemperature.py`](./Algorithms/MonotonicStack/01_DailyTemperature.py) - 每日温度（LeetCode 739，单调栈）
+- [`单调栈.md`](./Algorithms/MonotonicStack/单调栈.md) - 单调栈知识点总结
+
 #### BinaryTree
 二叉树相关算法实现
 - [`01_BinaryTreeTraversal.py`](./Algorithms/BinaryTree/01_BinaryTreeTraversal.py) - 二叉树遍历（前序/中序/后序/层序）
@@ -179,6 +184,7 @@
 - [`34_DeleteOperationForTwoStrings.py`](./Algorithms/DynamicPlanning/34_DeleteOperationForTwoStrings.py) - 两个字符串的删除操作（LeetCode 583，回溯/记忆化/DP 五种解法）
 - [`35_EditDistance.py`](./Algorithms/DynamicPlanning/35_EditDistance.py) - 编辑距离（LeetCode 72，插入/删除/替换三种操作）
 - [`36_Palindromic-Substrings.py`](./Algorithms/DynamicPlanning/36_Palindromic-Substrings.py) - 回文子串（LeetCode 647，区间 DP/中心扩展/暴力三种解法）
+- [`37_LongestPalindromicSubsequence.py`](./Algorithms/DynamicPlanning/37_LongestPalindromicSubsequence.py) - 最长回文子序列（LeetCode 516，区间 DP）
 - [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) - 动态规划知识点总结
 
 ### py_codes
@@ -227,6 +233,12 @@ Python 数据结构与算法学习笔记
 - 括号匹配：栈的经典应用
 - 单调栈/队列：Next Greater Element、滑动窗口最大值
 - 堆：Top K 问题
+
+### 单调栈
+- 核心思想：利用栈维护一个单调递增/递减的序列，从而高效解决"下一个更大/更小"问题
+- 时间复杂度：O(n)，每个元素最多入栈出栈一次
+- 适用场景：下一个更大元素（Next Greater Element）、每日温度、柱状图中最大矩形、接雨水
+- 分类：单调递增栈（找右边更小元素）、单调递减栈（找右边更大元素）
 
 ### 回溯算法
 - 核心思想：DFS深度优先搜索 + 试错 + 剪枝
@@ -304,6 +316,9 @@ python Algorithms/GreedyAlgorithms/01_AssignCookies.py
 
 # 运行动态规划
 python Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py
+
+# 运行单调栈算法
+python Algorithms/MonotonicStack/01_DailyTemperature.py
 ```
 
 ### 运行学习笔记
