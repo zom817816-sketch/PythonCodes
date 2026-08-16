@@ -61,6 +61,8 @@
 #### MonotonicStack
 单调栈相关算法实现
 - [`01_DailyTemperature.py`](./Algorithms/MonotonicStack/01_DailyTemperature.py) - 每日温度（LeetCode 739，单调栈）
+- [`02_NextGreaterelement_i.py`](./Algorithms/MonotonicStack/02_NextGreaterelement_i.py) - 下一个更大元素 I（LeetCode 496，单调栈 + 哈希表）
+- [`03_NextGreaterElement_ii.py`](./Algorithms/MonotonicStack/03_NextGreaterElement_ii.py) - 下一个更大元素 II（LeetCode 503，循环数组 + 单调栈）
 - [`单调栈.md`](./Algorithms/MonotonicStack/单调栈.md) - 单调栈知识点总结
 
 #### BinaryTree
