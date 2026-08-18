@@ -108,7 +108,80 @@ def minSubArrayLen_bruteforce(target: int, nums: list[int]) -> int:
 
 
 # ══════════════════════════════════════════════════════════
-# 解法二：滑动窗口（双指针）⭐⭐⭐⭐⭐ 推荐
+# 解法二：前缀和 + 二分查找
+# ══════════════════════════════════════════════════════════
+
+
+def minSubArrayLen_prefix_binary(target: int, nums: list[int]) -> int:
+    """前缀和 + 二分查找 ⭐⭐⭐
+
+    核心思想：
+    ────────────────────────────────────────────────────────
+    构建前缀和数组 prefix，prefix[k] = nums[0] + ... + nums[k-1]。
+    子数组 nums[i..j] 的和 = prefix[j+1] - prefix[i]。
+    要找和 >= target，即 prefix[i] <= prefix[j+1] - target。
+    因为 nums 都是正整数，prefix 单调递增，可以用二分查找快速定位最大的 i
+    （i 越大，子数组越短）。
+
+    算法步骤：
+    1. 构建前缀和数组 prefix，长度 n+1，prefix[0] = 0。
+    2. 对每个右端点 j（0 到 n-1）：
+       a. threshold = prefix[j+1] - target。
+       b. 在 prefix[0..j] 中二分查找最大的 i，使 prefix[i] <= threshold。
+       c. 若找到（i >= 0），min_len = min(min_len, j - i + 1)。
+    3. 返回 min_len 或 0。
+
+    时间复杂度：O(n log n) — 遍历 n 个右端点，每次二分查找 O(log n)。
+    空间复杂度：O(n) — 前缀和数组。
+
+    图解示例：
+    ────────────────────────────────────────────────────────
+    target = 7, nums = [2, 3, 1, 2, 4, 3]
+    prefix = [0, 2, 5, 6, 8, 12, 15]  （长度 7）
+
+     j   prefix[j+1]  threshold   搜索范围 prefix[0..j]   最大的 i (prefix[i]<=threshold)   长度 j-i+1
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+     0        2          -5         [0]                    无（0 > -5）                      -
+     1        5          -2         [0, 2]                 无                                -
+     2        6          -1         [0, 2, 5]              无                                -
+     3        8           1         [0, 2, 5, 6]           i=0 (prefix[0]=0 ≤ 1)             4
+     4       12           5         [0, 2, 5, 6, 8]        i=2 (prefix[2]=5 ≤ 5)             3
+     5       15           8         [0, 2, 5, 6, 8, 12]    i=4 (prefix[4]=8 ≤ 8)             2
+
+    返回 min_len = 2 ✓（子数组 [4, 3]）
+
+    为什么能适配含负数的数组？
+        滑动窗口依赖"正整数保证 cur_sum 单调递增"这一前提。
+        前缀和 + 二分查找只要 prefix 单调递增就能二分。
+        但若 nums 含负数，prefix 不再单调，此时需用有序集合（如 SortedList）
+        替代 bisect 来维护"已见过的 prefix 值"，复杂度仍为 O(n log n)。
+    """
+    import bisect
+
+    n = len(nums)
+    # 构建前缀和：prefix[k] = nums[0] + ... + nums[k-1]，prefix[0] = 0
+    prefix = [0] * (n + 1)
+    for k in range(n):
+        prefix[k + 1] = prefix[k] + nums[k]
+
+    min_len = n + 1
+
+    for j in range(n):
+        # 子数组 nums[i..j] 的和 = prefix[j+1] - prefix[i] >= target
+        # 即 prefix[i] <= prefix[j+1] - target
+        threshold = prefix[j + 1] - target
+        # 在 prefix[0..j] 中找最大的 i 使 prefix[i] <= threshold
+        # bisect_right 返回第一个 > threshold 的位置，减 1 得到最右 <= threshold 的位置
+        # 搜索范围限定为 prefix[0..j]（hi=j+1），因为左端点 i 不能超过 j
+        i = bisect.bisect_right(prefix, threshold, 0, j + 1) - 1
+        if i >= 0:  # 找到满足条件的左端点
+            min_len = min(min_len, j - i + 1)
+
+    return 0 if min_len == n + 1 else min_len
+
+
+# ══════════════════════════════════════════════════════════
+# 解法三：滑动窗口（双指针）⭐⭐⭐⭐⭐ 推荐
 # ══════════════════════════════════════════════════════════
 
 
@@ -179,8 +252,7 @@ def minSubArrayLen(target: int, nums: list[int]) -> int:
         while cur_sum >= target:
             # 当前窗口 [left, right] 满足条件，更新最短长度
             window_len = right - left + 1
-            if window_len < min_len:
-                min_len = window_len
+            min_len = min(min_len, window_len)
             # 移出左边界
             cur_sum -= nums[left]
             left += 1
