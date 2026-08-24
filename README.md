@@ -78,6 +78,7 @@
 | [`06_Ransom.py`](./Algorithms/HashTable/06_Ransom.py) | 赎金信 |
 | [`07_SumOfThree.py`](./Algorithms/HashTable/07_SumOfThree.py) | 三数之和 |
 | [`08_SumOfFour.py`](./Algorithms/HashTable/08_SumOfFour.py) | 四数之和 |
+| [`09_LongestSubstrWithoutRepeating.py`](./Algorithms/HashTable/09_LongestSubstrWithoutRepeating.py) | 最长不重复子串 |
 | [`哈希表.md`](./Algorithms/HashTable/哈希表.md) | 📝 哈希表知识点总结 |
 
 </details>
@@ -342,6 +343,7 @@
 | [`35_EditDistance.py`](./Algorithms/DynamicPlanning/35_EditDistance.py) | 编辑距离（LeetCode 72，插入/删除/替换三种操作） |
 | [`36_Palindromic-Substrings.py`](./Algorithms/DynamicPlanning/36_Palindromic-Substrings.py) | 回文子串（LeetCode 647，区间 DP/中心扩展/暴力三种解法） |
 | [`37_LongestPalindromicSubsequence.py`](./Algorithms/DynamicPlanning/37_LongestPalindromicSubsequence.py) | 最长回文子序列（LeetCode 516，区间 DP） |
+| [`38_LongestPalindromicSubstring.py`](./Algorithms/DynamicPlanning/38_LongestPalindromicSubstring.py) | 最长回文子串（LeetCode 5，区间 DP/中心扩展/Manacher/暴力） |
 | [`动态规划.md`](./Algorithms/DynamicPlanning/动态规划.md) | 📝 动态规划知识点总结 |
 
 </details>
