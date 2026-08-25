@@ -21,8 +21,14 @@
 """
 
 def reverse_integer(x: int) -> int:
+    # 记录符号
     sign = -1 if x < 0 else 1
-    reversed_x = str(abs(x))[::-1]
-    result = int(reversed_x) * sign
+    # 取绝对值转字符串，反转，再转回整数（自动去掉前导零）
+    reversed_str = str(abs(x))[::-1]
+    result = int(reversed_str) * sign  # int() 会自动忽略前导零
+    
+    # 检查 32 位溢出
+    if result < -2**31 or result > 2**31 - 1:
+        return 0
     return result
         
