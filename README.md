@@ -5,14 +5,14 @@
 **算法实现 & 数据结构学习代码仓库**
 
 [![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Topics](https://img.shields.io/badge/Topics-13-blueviolet?style=flat-square)](#目录)
-[![Solutions](https://img.shields.io/badge/Solutions-136%2B-brightgreen?style=flat-square)](#目录)
+[![Topics](https://img.shields.io/badge/Topics-14-blueviolet?style=flat-square)](#目录)
+[![Solutions](https://img.shields.io/badge/Solutions-145%2B-brightgreen?style=flat-square)](#目录)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Problems-FFA116?style=flat-square&logo=leetcode&logoColor=white)](https://leetcode.cn/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](#许可证)
 
 从基础数据结构到动态规划，配套 **知识点总结 · 详细注释 · 多种解法对比**
 
-数组 · 哈希表 · 链表 · 字符串 · 栈 · 单调栈 · 二叉树 · 双指针 · 回溯 · 贪心 · DFS · BFS · 动态规划
+数组 · 哈希表 · 链表 · 字符串 · 栈 · 单调栈 · 二叉树 · 双指针 · 回溯 · 贪心 · DFS · BFS · 动态规划 · 数学
 
 </div>
 
@@ -23,18 +23,19 @@
 | # | 专题 | 核心内容 | 文件数 |
 |:-:|:-----|:---------|:-----:|
 | 01 | [数组 Array](#数组-array) | 二分查找 · 双指针 · 滑动窗口 | 7 |
-| 02 | [哈希表 HashTable](#哈希表-hashtable) | 空间换时间 · 去重计数 · 求和系列 | 9 |
-| 03 | [链表 LinkedList](#链表-linkedlist) | 虚拟头节点 · 反转 · 判环 · 相交 | 8 |
-| 04 | [字符串 String](#字符串-string) | 反转替换 · KMP · 重复子串 | 8 |
+| 02 | [哈希表 HashTable](#哈希表-hashtable) | 空间换时间 · 去重计数 · 求和系列 | 10 |
+| 03 | [链表 LinkedList](#链表-linkedlist) | 虚拟头节点 · 反转 · 判环 · 相交 · 两数相加 | 9 |
+| 04 | [字符串 String](#字符串-string) | 反转替换 · KMP · Z 字形 · atoi | 11 |
 | 05 | [栈 Stack](#栈-stack) | 队列栈互拟 · 括号匹配 · 单调队列 · Top K | 7 |
 | 06 | [单调栈 MonotonicStack](#单调栈-monotonicstack) | 每日温度 · 接雨水 · 柱状图矩形 | 6 |
 | 07 | [二叉树 BinaryTree](#二叉树-binarytree) | 遍历 · 深度 · 路径 · BST 全套 | 28 |
-| 08 | [双指针 TwoPointer](#双指针-twopointer) | 替换数字 | 2 |
+| 08 | [双指针 TwoPointer](#双指针-twopointer) | 替换数字 · 退格比较 · 下一个排列 | 4 |
 | 09 | [回溯算法 BackTracking](#回溯算法-backtracking) | 组合 · 排列 · 子集 · 切割 · 棋盘 | 15 |
-| 10 | [贪心算法 Greedy](#贪心算法-greedyalgorithms) | 股票 · 跳跃 · 区间调度 | 18 |
+| 10 | [贪心算法 Greedy](#贪心算法-greedyalgorithms) | 股票 · 跳跃 · 区间调度 · 盛水容器 | 19 |
 | 11 | [深度优先搜索 DFS](#深度优先搜索-deepfirstsearch) | 跳跃游戏 III · 记忆化搜索 | 1 |
 | 12 | [广度优先搜索 BFS](#广度优先搜索-breadthfirstsearch) | 跳跃游戏 IV · 双向 BFS | 1 |
-| 13 | [动态规划 DP](#动态规划-dynamicplanning) | 背包 · 股票 · 打家劫舍 · 子序列 · 编辑距离 | 38 |
+| 13 | [动态规划 DP](#动态规划-dynamicplanning) | 背包 · 股票 · 打家劫舍 · 子序列 · 编辑距离 | 39 |
+| 14 | [数学 Math](#数学-math) | 位运算模拟 · 整数除法 | 1 |
 
 > 📓 [学习笔记 py_codes](#学习笔记py_codes) · 💡 [算法知识点速查](#算法知识点速查) · 🚀 [使用说明](#使用说明) · 📚 [学习建议](#学习建议)
 
@@ -66,7 +67,7 @@
 > `Algorithms/HashTable` · 空间换时间 / 去重计数 / 求和系列
 
 <details>
-<summary><b>📂 查看全部文件（9 个）</b></summary>
+<summary><b>📂 查看全部文件（10 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
@@ -85,10 +86,10 @@
 
 ### 链表 LinkedList
 
-> `Algorithms/LinkedList` · 虚拟头节点 / 反转 / 判环 / 相交
+> `Algorithms/LinkedList` · 虚拟头节点 / 反转 / 判环 / 相交 / 两数相加
 
 <details>
-<summary><b>📂 查看全部文件（8 个）</b></summary>
+<summary><b>📂 查看全部文件（9 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
@@ -99,16 +100,17 @@
 | [`05_RemoveNthFromEnd.py`](./Algorithms/LinkedList/05_RemoveNthFromEnd.py) | 删除链表的倒数第 N 个节点（LeetCode 19） |
 | [`06_IntersectionOfTwoLinkedLists.py`](./Algorithms/LinkedList/06_IntersectionOfTwoLinkedLists.py) | 相交链表（LeetCode 160） |
 | [`07_LinkedListCycleII.py`](./Algorithms/LinkedList/07_LinkedListCycleII.py) | 环形链表 II（LeetCode 142） |
+| [`08_AddTwoNumbers.py`](./Algorithms/LinkedList/08_AddTwoNumbers.py) | 两数相加（LeetCode 2） |
 | [`链表.md`](./Algorithms/LinkedList/链表.md) | 📝 链表知识点总结 |
 
 </details>
 
 ### 字符串 String
 
-> `Algorithms/String` · 反转替换 / KMP / 重复子串
+> `Algorithms/String` · 反转替换 / KMP / Z 字形 / atoi
 
 <details>
-<summary><b>📂 查看全部文件（8 个）</b></summary>
+<summary><b>📂 查看全部文件（11 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
@@ -119,6 +121,9 @@
 | [`05_Strstr.py`](./Algorithms/String/05_Strstr.py) | 字符串查找（KMP算法） |
 | [`06_RepeatedSubstring.py`](./Algorithms/String/06_RepeatedSubstring.py) | 重复子字符串检测 |
 | [`07_RepeatedStringMatch.py`](./Algorithms/String/07_RepeatedStringMatch.py) | 重复字符串匹配 |
+| [`08_ZigZagConversion.py`](./Algorithms/String/08_ZigZagConversion.py) | Z 字形变换（LeetCode 6） |
+| [`09_ReverseInteger.py`](./Algorithms/String/09_ReverseInteger.py) | 整数反转（LeetCode 7） |
+| [`10_StringToInteger-atoi.py`](./Algorithms/String/10_StringToInteger-atoi.py) | 字符串转换整数 atoi（LeetCode 8） |
 | [`字符串.md`](./Algorithms/String/字符串.md) | 📝 字符串知识点总结 |
 
 </details>
@@ -202,14 +207,16 @@
 
 ### 双指针 TwoPointer
 
-> `Algorithms/TwoPointer` · 替换数字
+> `Algorithms/TwoPointer` · 替换数字 / 退格比较 / 下一个排列
 
 <details>
-<summary><b>📂 查看全部文件（2 个）</b></summary>
+<summary><b>📂 查看全部文件（4 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
 | [`01_ReplaceNumbers.py`](./Algorithms/TwoPointer/01_ReplaceNumbers.py) | 替换数字 |
+| [`02_BackStringCompare.py`](./Algorithms/TwoPointer/02_BackStringCompare.py) | 比较含退格的字符串（LeetCode 844） |
+| [`03_NextPermutation.py`](./Algorithms/TwoPointer/03_NextPermutation.py) | 下一个排列（LeetCode 31） |
 | [`双指针.md`](./Algorithms/TwoPointer/双指针.md) | 📝 双指针知识点总结 |
 
 </details>
@@ -243,10 +250,10 @@
 
 ### 贪心算法 GreedyAlgorithms
 
-> `Algorithms/GreedyAlgorithms` · 局部最优 / 股票 / 跳跃 / 区间调度
+> `Algorithms/GreedyAlgorithms` · 局部最优 / 股票 / 跳跃 / 区间调度 / 盛水容器
 
 <details>
-<summary><b>📂 查看全部文件（18 个）</b></summary>
+<summary><b>📂 查看全部文件（19 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
@@ -267,6 +274,7 @@
 | [`15_MergeIntervals.py`](./Algorithms/GreedyAlgorithms/15_MergeIntervals.py) | 合并区间（LeetCode 56，三种贪心解法） |
 | [`16_MonotoneIncreasingDigits.py`](./Algorithms/GreedyAlgorithms/16_MonotoneIncreasingDigits.py) | 单调递增的数字（LeetCode 738，四种解法） |
 | [`17_BinaryTreeCameras.py`](./Algorithms/GreedyAlgorithms/17_BinaryTreeCameras.py) | 监控二叉树（LeetCode 968，贪心算法） |
+| [`18_ContainerWithMostWater.py`](./Algorithms/GreedyAlgorithms/18_ContainerWithMostWater.py) | 盛最多水的容器（LeetCode 11，对撞指针） |
 | [`贪心算法.md`](./Algorithms/GreedyAlgorithms/贪心算法.md) | 📝 贪心算法知识点总结 |
 
 </details>
@@ -302,7 +310,7 @@
 > `Algorithms/DynamicPlanning` · 背包 / 股票 / 打家劫舍 / 子序列 / 编辑距离
 
 <details>
-<summary><b>📂 查看全部文件（38 个）</b></summary>
+<summary><b>📂 查看全部文件（39 个）</b></summary>
 
 | 文件 | 说明 |
 |:---|:---|
@@ -348,6 +356,19 @@
 
 </details>
 
+### 数学 Math
+
+> `Algorithms/Math` · 位运算模拟 / 整数除法
+
+<details>
+<summary><b>📂 查看全部文件（1 个）</b></summary>
+
+| 文件 | 说明 |
+|:---|:---|
+| [`01_DivideTwoIntegers.py`](./Algorithms/Math/01_DivideTwoIntegers.py) | 两数相除（LeetCode 29，加减与位运算模拟除法） |
+
+</details>
+
 ---
 
 ## 学习笔记（py_codes）
@@ -386,13 +407,15 @@
 | **数组** | 二分查找：有序数组的 O(log n) 查找<br>双指针：快慢指针、对撞指针<br>滑动窗口：子数组问题 |
 | **链表** | 虚拟头节点：简化边界处理<br>双指针：找中点、判环<br>反转链表：迭代与递归 |
 | **哈希表** | 空间换时间：O(1) 查询<br>常见应用：去重、计数、快速查找 |
-| **字符串** | KMP 算法：O(n+m) 字符串匹配<br>双指针：反转、替换 |
+| **字符串** | KMP 算法：O(n+m) 字符串匹配<br>双指针：反转、替换<br>模拟：Z 字形变换、atoi、整数反转 |
 | **栈与队列** | 括号匹配：栈的经典应用<br>单调栈/队列：Next Greater Element、滑动窗口最大值<br>堆：Top K 问题 |
 | **单调栈** | 核心思想：维护单调递增/递减序列，高效解决"下一个更大/更小"问题<br>时间复杂度：O(n)，每个元素最多入栈出栈一次<br>适用场景：下一个更大元素、每日温度、柱状图中最大矩形、接雨水<br>分类：单调递增栈（找右边更小元素）、单调递减栈（找右边更大元素） |
 | **二叉树** | 遍历：前序/中序/后序/层序（统一迭代标记法）<br>递归三要素：终止条件、返回值、单层逻辑<br>属性：对称、平衡（自顶向下 O(n²) / 自底向上 O(n)）、最大/最小深度、完全二叉树计数 O(log²n)、N 叉树扩展<br>路径与构造：所有路径、路径总和、左叶子之和、左下角值、中序+后序构造、合并两树<br>BST 系列：中序有序性、查找/验证/插入/删除（五种情况）/修剪/累加树、众数、最小差值、最近公共祖先、有序数组转平衡 BST<br>层序进阶：锯齿形遍历、每层最大值、连接右侧节点 |
+| **双指针** | 对撞指针：盛水容器、验证回文<br>快慢指针：链表中点、判环<br>同向双指针：退格字符串比较、下一个排列 |
 | **回溯算法** | 核心思想：DFS 深搜 + 试错 + 剪枝，三部曲：选择 → 递归 → 回溯<br>组合：组合总和 I/II/III，注意去重与剪枝<br>切割：分割回文串，可用 DP 预处理优化判断<br>子集：路径记录所有节点；子集 II 需排序 + 去重<br>排列：used 数组标记；全排列 II 去重三法（排序剪枝/哈希/计数器）<br>非递减子序列：同层去重 + 非递减约束剪枝<br>棋盘：N 皇后、解数独（二维递归）<br>时间复杂度：通常 O(N!) 或 O(2^N) |
-| **贪心算法** | 核心思想：局部最优 → 全局最优，无需回溯<br>适用场景：最优子结构、无后效性<br>常见题型：分发饼干、摆动序列、最大子数组和、买卖股票、跳跃游戏<br>区间问题：最少箭数引爆气球、无重叠区间、划分字母区间<br>解题步骤：分解子问题 → 确定贪心策略 → 求解 |
+| **贪心算法** | 核心思想：局部最优 → 全局最优，无需回溯<br>适用场景：最优子结构、无后效性<br>常见题型：分发饼干、摆动序列、最大子数组和、买卖股票、跳跃游戏、盛最多水的容器<br>区间问题：最少箭数引爆气球、无重叠区间、划分字母区间<br>解题步骤：分解子问题 → 确定贪心策略 → 求解 |
 | **动态规划** | 核心思想：最优子结构 + 重叠子问题<br>DP 五部曲：dp 数组含义 → 递推公式 → 初始化 → 遍历顺序 → 打印验证<br>常见题型：股票买卖、背包问题（0-1背包、完全背包）、打家劫舍、子序列问题、分割等和子集、目标和、一和零 |
+| **数学** | 位运算模拟：用加减与左移倍增模拟乘除<br>边界处理：32 位溢出截断、符号处理 |
 
 ---
 
@@ -421,6 +444,9 @@ python Algorithms/DynamicPlanning/01_BestTimeToSellAndBuyStock_i.py
 
 # 单调栈
 python Algorithms/MonotonicStack/01_DailyTemperature.py
+
+# 数学
+python Algorithms/Math/01_DivideTwoIntegers.py
 ```
 
 ### 运行学习笔记
